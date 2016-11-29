@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="PostgreSQL - mydb@localhost" uuid="8120fe72-ca85-4404-bb1e-bcaf882719a0">
+      <database-info product="PostgreSQL" version="9.4.9" jdbc-version="4.0" driver-name="PostgreSQL Native Driver" driver-version="PostgreSQL 9.4 JDBC4 (build 1201)">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>postgres</user-name>
+      <introspection-scope>mydb:public,pg_catalog,postgres</introspection-scope>
+      <resolve-scope>mydb:public,postgres</resolve-scope>
+      <ssh-properties>
+        <enabled>true</enabled>
+        <proxy-host>192.168.0.102</proxy-host>
+        <proxy-port>22</proxy-port>
+        <secret-storage>memory</secret-storage>
+        <user>pi</user>
+        <use-password>true</use-password>
+        <private-key-path>/home/pi/.ssh/id_rsa</private-key-path>
+      </ssh-properties>
+    </data-source>
+  </component>
+</project>

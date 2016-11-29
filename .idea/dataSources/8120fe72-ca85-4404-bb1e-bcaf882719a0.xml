@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="PostgreSQL - mydb@localhost">
+  <database-model serializer="dbm" rdbms="POSTGRES" format-version="2.6">
+    <database id="1" name="mydb">
+      <object-id>16384</object-id>
+      <visible>1</visible>
+    </database>
+    <database id="2" name="postgres">
+      <object-id>12141</object-id>
+      <visible>1</visible>
+    </database>
+    <schema id="3" parent="1" name="public">
+      <object-id>2200</object-id>
+      <visible>1</visible>
+      <introspection-state-number>705</introspection-state-number>
+      <introspection-timestamp>2016-11-29.17:51:43.446</introspection-timestamp>
+    </schema>
+    <schema id="4" parent="1" name="pg_catalog">
+      <object-id>11</object-id>
+    </schema>
+    <schema id="5" parent="1" name="pg_toast">
+      <object-id>99</object-id>
+    </schema>
+    <schema id="6" parent="1" name="pg_temp_1">
+      <object-id>11320</object-id>
+    </schema>
+    <schema id="7" parent="1" name="pg_toast_temp_1">
+      <object-id>11321</object-id>
+    </schema>
+    <schema id="8" parent="1" name="information_schema">
+      <object-id>11591</object-id>
+    </schema>
+    <sequence id="9" parent="3" name="current_values_id_seq">
+      <object-id>16420</object-id>
+      <state-number>698</state-number>
+    </sequence>
+    <sequence id="10" parent="3" name="historical_values_id_seq">
+      <object-id>16428</object-id>
+      <state-number>699</state-number>
+    </sequence>
+    <sequence id="11" parent="3" name="hum_stats_id_seq">
+      <object-id>16457</object-id>
+      <state-number>704</state-number>
+    </sequence>
+    <sequence id="12" parent="3" name="press_stats_id_seq">
+      <object-id>16449</object-id>
+      <state-number>703</state-number>
+    </sequence>
+    <sequence id="13" parent="3" name="statistic_values_id_seq">
+      <object-id>16465</object-id>
+      <state-number>705</state-number>
+    </sequence>
+    <sequence id="14" parent="3" name="temp_stats_id_seq">
+      <object-id>16441</object-id>
+      <state-number>702</state-number>
+    </sequence>
+    <sequence id="15" parent="3" name="user_id_seq">
+      <object-id>16401</object-id>
+      <state-number>693</state-number>
+    </sequence>
+    <table id="16" parent="3" name="current_values">
+      <object-id>16422</object-id>
+      <state-number>701</state-number>
+    </table>
+    <table id="17" parent="3" name="historical_values">
+      <object-id>16430</object-id>
+      <state-number>701</state-number>
+    </table>
+    <table id="18" parent="3" name="hum_stats">
+      <object-id>16459</object-id>
+      <state-number>705</state-number>
+    </table>
+    <table id="19" parent="3" name="press_stats">
+      <object-id>16451</object-id>
+      <state-number>705</state-number>
+    </table>
+    <table id="20" parent="3" name="statistic_values">
+      <object-id>16467</object-id>
+      <state-number>705</state-number>
+    </table>
+    <table id="21" parent="3" name="temp_stats">
+      <object-id>16443</object-id>
+      <state-number>705</state-number>
+    </table>
+    <table id="22" parent="3" name="user">
+      <object-id>16403</object-id>
+      <state-number>693</state-number>
+    </table>
+    <column id="23" parent="16" name="id">
+      <state-number>698</state-number>
+      <mandatory>1</mandatory>
+      <data-type>integer|0</data-type>
+      <default-expression>nextval(&apos;current_values_id_seq&apos;::regclass)</default-expression>
+    </column>
+    <column id="24" parent="16" name="temperature">
+      <state-number>698</state-number>
+      <data-type>double precision|0</data-type>
+    </column>
+    <column id="25" parent="16" name="humidity">
+      <state-number>698</state-number>
+      <data-type>double precision|0</data-type>
+    </column>
+    <column id="26" parent="16" name="pressure">
+      <state-number>698</state-number>
+      <data-type>double precision|0</data-type>
+    </column>
+    <index id="27" parent="16" name="current_values_pkey">
+      <object-id>16426</object-id>
+      <columns>id</columns>
+      <desc-columns></desc-columns>
+      <unique>1</unique>
+    </index>
+    <key id="28" parent="16" name="current_values_pkey">
+      <object-id>16427</object-id>
+      <columns>id</columns>
+      <underlying-index>current_values_pkey</underlying-index>
+      <primary>1</primary>
+    </key>
+    <column id="29" parent="17" name="id">
+      <state-number>699</state-number>
+      <mandatory>1</mandatory>
+      <data-type>integer|0</data-type>
+      <default-expression>nextval(&apos;historical_values_id_seq&apos;::regclass)</default-expression>
+    </column>
+    <column id="30" parent="17" name="date">
+      <state-number>699</state-number>
+      <data-type>timestamp|0</data-type>
+    </column>
+    <column id="31" parent="17" name="id_current_val">
+      <state-number>700</state-number>
+      <data-type>integer|0</data-type>
+    </column>
+    <index id="32" parent="17" name="historical_values_pkey">
+      <object-id>16434</object-id>
+      <columns>id</columns>
+      <desc-columns></desc-columns>
+      <unique>1</unique>
+    </index>
+    <key id="33" parent="17" name="historical_values_pkey">
+      <object-id>16435</object-id>
+      <columns>id</columns>
+      <underlying-index>historical_values_pkey</underlying-index>
+      <primary>1</primary>
+    </key>
+    <foreign-key id="34" parent="17" name="current_values___fk">
+      <object-id>16436</object-id>
+      <columns>id_current_val</columns>
+      <ref-key>~.current_values.current_values_pkey</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <column id="35" parent="18" name="id">
+      <state-number>704</state-number>
+      <mandatory>1</mandatory>
+      <data-type>integer|0</data-type>
+      <default-expression>nextval(&apos;hum_stats_id_seq&apos;::regclass)</default-expression>
+    </column>
+    <column id="36" parent="18" name="min_hum">
+      <state-number>704</state-number>
+      <data-type>double precision|0</data-type>
+    </column>
+    <column id="37" parent="18" name="max_hum">
+      <state-number>704</state-number>
+      <data-type>double precision|0</data-type>
+    </column>
+    <column id="38" parent="18" name="avg_hum">
+      <state-number>704</state-number>
+      <data-type>double precision|0</data-type>
+    </column>
+    <index id="39" parent="18" name="hum_stats_pkey">
+      <object-id>16463</object-id>
+      <columns>id</columns>
+      <desc-columns></desc-columns>
+      <unique>1</unique>
+    </index>
+    <key id="40" parent="18" name="hum_stats_pkey">
+      <object-id>16464</object-id>
+      <columns>id</columns>
+      <underlying-index>hum_stats_pkey</underlying-index>
+      <primary>1</primary>
+    </key>
+    <column id="41" parent="19" name="id">
+      <state-number>703</state-number>
+      <mandatory>1</mandatory>
+      <data-type>integer|0</data-type>
+      <default-expression>nextval(&apos;press_stats_id_seq&apos;::regclass)</default-expression>
+    </column>
+    <column id="42" parent="19" name="min_press">
+      <state-number>703</state-number>
+      <data-type>double precision|0</data-type>
+    </column>
+    <column id="43" parent="19" name="max_press">
+      <state-number>703</state-number>
+      <data-type>double precision|0</data-type>
+    </column>
+    <column id="44" parent="19" name="avg_press">
+      <state-number>703</state-number>
+      <data-type>double precision|0</data-type>
+    </column>
+    <index id="45" parent="19" name="press_stats_pkey">
+      <object-id>16455</object-id>
+      <columns>id</columns>
+      <desc-columns></desc-columns>
+      <unique>1</unique>
+    </index>
+    <key id="46" parent="19" name="press_stats_pkey">
+      <object-id>16456</object-id>
+      <columns>id</columns>
+      <underlying-index>press_stats_pkey</underlying-index>
+      <primary>1</primary>
+    </key>
+    <column id="47" parent="20" name="id">
+      <state-number>705</state-number>
+      <mandatory>1</mandatory>
+      <data-type>integer|0</data-type>
+      <default-expression>nextval(&apos;statistic_values_id_seq&apos;::regclass)</default-expression>
+    </column>
+    <column id="48" parent="20" name="period_start">
+      <state-number>705</state-number>
+      <data-type>timestamp|0</data-type>
+    </column>
+    <column id="49" parent="20" name="period_stop">
+      <state-number>705</state-number>
+      <data-type>timestamp|0</data-type>
+    </column>
+    <column id="50" parent="20" name="id_temp_stats">
+      <state-number>705</state-number>
+      <data-type>integer|0</data-type>
+    </column>
+    <column id="51" parent="20" name="id_hum_stats">
+      <state-number>705</state-number>
+      <data-type>integer|0</data-type>
+    </column>
+    <column id="52" parent="20" name="id_press_stats">
+      <state-number>705</state-number>
+      <data-type>integer|0</data-type>
+    </column>
+    <index id="53" parent="20" name="statistic_values_pkey">
+      <object-id>16471</object-id>
+      <columns>id</columns>
+      <desc-columns></desc-columns>
+      <unique>1</unique>
+    </index>
+    <key id="54" parent="20" name="statistic_values_pkey">
+      <object-id>16472</object-id>
+      <columns>id</columns>
+      <underlying-index>statistic_values_pkey</underlying-index>
+      <primary>1</primary>
+    </key>
+    <foreign-key id="55" parent="20" name="statistic_values_temp_stats_id_fk">
+      <object-id>16473</object-id>
+      <columns>id_temp_stats</columns>
+      <ref-key>~.temp_stats.temp_stats_pkey</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="56" parent="20" name="statistic_values_hum_stats_id_fk">
+      <object-id>16478</object-id>
+      <columns>id_hum_stats</columns>
+      <ref-key>~.hum_stats.hum_stats_pkey</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="57" parent="20" name="statistic_values_press_stats_id_fk">
+      <object-id>16483</object-id>
+      <columns>id_press_stats</columns>
+      <ref-key>~.press_stats.press_stats_pkey</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <column id="58" parent="21" name="id">
+      <state-number>702</state-number>
+      <mandatory>1</mandatory>
+      <data-type>integer|0</data-type>
+      <default-expression>nextval(&apos;temp_stats_id_seq&apos;::regclass)</default-expression>
+    </column>
+    <column id="59" parent="21" name="min_temp">
+      <state-number>702</state-number>
+      <data-type>double precision|0</data-type>
+    </column>
+    <column id="60" parent="21" name="max_temp">
+      <state-number>702</state-number>
+      <data-type>double precision|0</data-type>
+    </column>
+    <column id="61" parent="21" name="avg_temp">
+      <state-number>702</state-number>
+      <data-type>double precision|0</data-type>
+    </column>
+    <index id="62" parent="21" name="temp_stats_pkey">
+      <object-id>16447</object-id>
+      <columns>id</columns>
+      <desc-columns></desc-columns>
+      <unique>1</unique>
+    </index>
+    <key id="63" parent="21" name="temp_stats_pkey">
+      <object-id>16448</object-id>
+      <columns>id</columns>
+      <underlying-index>temp_stats_pkey</underlying-index>
+      <primary>1</primary>
+    </key>
+    <column id="64" parent="22" name="id">
+      <state-number>693</state-number>
+      <mandatory>1</mandatory>
+      <data-type>integer|0</data-type>
+      <default-expression>nextval(&apos;user_id_seq&apos;::regclass)</default-expression>
+    </column>
+    <column id="65" parent="22" name="login">
+      <state-number>693</state-number>
+      <mandatory>1</mandatory>
+      <data-type>varchar(50)|0</data-type>
+    </column>
+    <column id="66" parent="22" name="password">
+      <state-number>693</state-number>
+      <mandatory>1</mandatory>
+      <data-type>varchar(50)|0</data-type>
+    </column>
+    <index id="67" parent="22" name="user_pkey">
+      <object-id>16407</object-id>
+      <columns>id</columns>
+      <desc-columns></desc-columns>
+      <unique>1</unique>
+    </index>
+    <key id="68" parent="22" name="user_pkey">
+      <object-id>16408</object-id>
+      <columns>id</columns>
+      <underlying-index>user_pkey</underlying-index>
+      <primary>1</primary>
+    </key>
+  </database-model>
+</dataSource>
