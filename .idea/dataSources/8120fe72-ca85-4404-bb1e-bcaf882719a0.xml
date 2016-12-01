@@ -12,8 +12,8 @@
     <schema id="3" parent="1" name="public">
       <object-id>2200</object-id>
       <visible>1</visible>
-      <introspection-state-number>705</introspection-state-number>
-      <introspection-timestamp>2016-11-29.17:51:43.446</introspection-timestamp>
+      <introspection-state-number>1200</introspection-state-number>
+      <introspection-timestamp>2016-12-01.21:41:37.325</introspection-timestamp>
     </schema>
     <schema id="4" parent="1" name="pg_catalog">
       <object-id>11</object-id>
@@ -60,11 +60,11 @@
     </sequence>
     <table id="16" parent="3" name="current_values">
       <object-id>16422</object-id>
-      <state-number>701</state-number>
+      <state-number>1200</state-number>
     </table>
     <table id="17" parent="3" name="historical_values">
       <object-id>16430</object-id>
-      <state-number>701</state-number>
+      <state-number>1200</state-number>
     </table>
     <table id="18" parent="3" name="hum_stats">
       <object-id>16459</object-id>
