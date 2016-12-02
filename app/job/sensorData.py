@@ -1,6 +1,6 @@
 from Adafruit_BME280 import *
 from app.config.databaseConfig import db_session
-from app.dao.models import CurrentValues, HistoricalValues
+from app.dao.daoObjects import CurrentValues, HistoricalValues
 import sched, time
 from datetime import datetime
 
