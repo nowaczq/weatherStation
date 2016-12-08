@@ -1,17 +1,24 @@
 <!doctype html>
-<html>
-    <head>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
-		<script src="http://code.angularjs.org/1.5.3/angular-route.min.js"></script>
-		<script src="/static/js/app.js"></script>
+<html ng-app="weatherStation">
+<head>
+    <script src="/static/lib/angular/angular.js"></script>
+    <script src="/static/lib/angular/angular-resource.js"></script>
+    <script src="/static/js/app.js"></script>
+    <script src="/static/js/controllers.js"></script>
+    <script src="/static/js/services.js"></script>
+    <script src="/static/lib/jquery/jquery.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/yeti/bootstrap.min.css" rel="stylesheet" media="screen">
+</head>
+<body>
 
-    </head>
-    <body ng-app="weatherStation">
+<h1>cosiek</h1>
+<a href="/">Home Page</a>
+<a href="/stats">Statystyki</a>
+<a href="/history">Historia</a>
+<a href="/login">Logowanie</a>
+<a href="/about">O projekcie</a>
 
-                <h1>cosiek</h1>
 
-
-
-			 <div ng-view></div>
-    </body>
+<div ng-view></div>
+</body>
 </html>

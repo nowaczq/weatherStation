@@ -1,9 +1,9 @@
 from sqlalchemy.orm import relationship
 from app.config.databaseConfig import base
-from app.__init__ import db
+from app import db
 
 class User(base):
-    __tablename__ = 'user'
+    __tablename__ = 'user_info'
     id = db.Column('id', db.INTEGER, primary_key=True)
     login = db.Column('login', db.VARCHAR(50), nullable=False)
     password = db.Column('password', db.VARCHAR(50), nullable=False)

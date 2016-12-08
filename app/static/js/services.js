@@ -5,20 +5,21 @@
 
 angular.module('angularFlaskServices', ['ngResource'])
 
-	.factory('Post', function($resource) {
+    .factory('Post', function ($resource) {
 
-		return $resource('/api/post/:postId', {}, {
+        return $resource('/api/post/:postId', {}, {
 
-			query: {
+            query: {
 
-				method: 'GET',
+                method: 'GET',
 
-				params: { postId: '' },
+                params: {postId: ''},
 
-				isArray: true
+                isArray: true
 
-			}
+            }
 
-		});
+        });
 
-	});
+    });
+

@@ -3,63 +3,32 @@
  */
 'use strict';   // See note about 'use strict'; below
 
-var myApp = angular.module('weatherStation', [
- 'ngRoute',
-]);
-
-myApp.config(['$routeProvider',
-     function($routeProvider) {
-         $routeProvider.
+angular.module('weatherStation', ['angularFlaskServices'])
+	.config(['$routeProvider', '$locationProvider',
+		function($routeProvider, $locationProvider) {
+		$routeProvider.
              when('/', {
-                 templateUrl: '/static/partials/index.html',
+                 templateUrl: '../static/partials/index.html',
+                 controller: IndexController
+             }).
+             when('/login', {
+                 templateUrl: '../static/partials/login.html',
+                 controller: LoginController
+             }).
+             when('/history', {
+                 templateUrl: '../static/partials/history.html',
+                 controller: HistoryController
+             }).
+             when('/stats', {
+                 templateUrl: '../static/partials/stats.html',
+                 controller: StatsController
              }).
              when('/about', {
                  templateUrl: '../static/partials/about.html',
+                 controller: AboutController
              }).
              otherwise({
                  redirectTo: '/'
              });
+            $locationProvider.html5Mode(true);
     }]);
-// 'use strict';
-//
-// var myApp = angular.module('weatherStation', [
-//  'ngRoute',
-// ]);
-//
-// myApp.config(['$routeProvider',
-//      function($routeProvider) {
-//          $routeProvider.
-//              when('/', {
-//                  templateUrl: '/templates/index.html',
-//              }).
-//              otherwise({
-//                  redirectTo: '/'
-//              });
-//     }]);
-// angular.module('weatherStation',['angularFlaskServices'])
-//     .config(['$routeProvider', '$locationProvider'],
-//     function ($routeProvider, $locationProvider)
-//     {
-//         $routeProvider
-//             .when('/',{
-//                 templateUrl:'weatherStation/templates/index.html',
-//                 controller: IndexController
-//             })
-//             .otherwise({
-//                 redirectTo: '/'
-//             })
-//             ;
-//         $locationProvider.html5Mode(true);
-//     })
-//     .run(['$rootScope', '$location', '$http', '$cookieStore',
-//
-// 		function run($rootScope) {
-//
-// 			$rootScope.globals = {
-//
-//
-//
-// 			};
-//
-// 		}])
-// ;

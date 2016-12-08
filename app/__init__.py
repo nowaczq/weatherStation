@@ -7,6 +7,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///mydb'
 db = SQLAlchemy(app)
 
 from app.controller import views
+from app.dao import daoObjects
 
 app.url_map.strict_slashes = False
 
