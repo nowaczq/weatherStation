@@ -3,7 +3,7 @@
  */
 'use strict';   // See note about 'use strict'; below
 
-angular.module('weatherStation', ['angularFlaskServices'])
+angular.module('weatherStation', ['angularFlaskServices','AuthenticationService','ngCookies'])
 	.config(['$routeProvider', '$locationProvider',
 		function($routeProvider, $locationProvider) {
 		$routeProvider.
@@ -26,6 +26,14 @@ angular.module('weatherStation', ['angularFlaskServices'])
              when('/about', {
                  templateUrl: '../static/partials/about.html',
                  controller: AboutController
+             }).
+             when('/console', {
+                 templateUrl: '../static/partials/console.html',
+                 controller: ConsoleController
+             }).
+             when('/logout', {
+                 templateUrl: '../static/partials/logout.html',
+                 controller: LogoutController
              }).
              otherwise({
                  redirectTo: '/'

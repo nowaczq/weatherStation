@@ -8,11 +8,10 @@
       <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
       <secret-storage>master_key</secret-storage>
       <user-name>postgres</user-name>
-      <introspection-scope>mydb:pg_catalog,postgres,public</introspection-scope>
       <resolve-scope>mydb:postgres,public</resolve-scope>
       <ssh-properties>
         <enabled>true</enabled>
-        <proxy-host>192.168.0.105</proxy-host>
+        <proxy-host>192.168.1.22</proxy-host>
         <proxy-port>22</proxy-port>
         <secret-storage>master_key</secret-storage>
         <user>pi</user>
