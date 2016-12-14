@@ -1,0 +1,25 @@
+<div>
+    <form name="historyForm" ng-submit="history()">
+        <h2>Podaj daty</h2>
+        <label>Start</label>
+        <input ng-model="startDate" name="startDate" type="text" id="inputStart" required="" autofocus=""/>
+        <label>Koniec</label>
+        <input ng-model="endDate" name="endDate" type="text" id="inputEnd" required="" autofocus=""/>
+        <button type="submit">Wybierz</button>
+    </form>
+    <!--<ol>-->
+        <!--<li ng-repeat="date in dateList">{{date.temperature}} ,{{date.humidity}}, {{date.pressure}} </li>-->
+    <!--</ol>-->
+    <table>
+        <tr>
+            <th>Temperatura</th>
+            <th>Wilgotność</th>
+            <th>Ciśnienie</th>
+        </tr>
+        <tr ng-repeat="date in dateList">
+            <td>{{date.temperature}}</td>
+            <td>{{date.humidity}}</td>
+            <td>{{date.pressure}}</td>
+        </tr>
+    </table>
+</div>

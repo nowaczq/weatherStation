@@ -8,7 +8,7 @@ angular.module('weatherStation', ['angularFlaskServices','AuthenticationService'
 		function($routeProvider, $locationProvider) {
 		$routeProvider.
              when('/', {
-                 templateUrl: '../static/partials/index.html',
+                 templateUrl: '../static/partials/home.html',
                  controller: IndexController
              }).
              when('/login', {

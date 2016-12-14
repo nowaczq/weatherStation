@@ -3,7 +3,7 @@
  */
 'use strict';
 
-function IndexController($scope,AuthenticationService, $timeout,$rootScope)
+function IndexController(AuthenticationService, $timeout,$rootScope)
 {
     (function initController()
         {
@@ -31,9 +31,21 @@ function StatsController($scope)
 
 }
 
-function HistoryController($scope)
+function HistoryController($scope, $http)
 {
+    $scope.history = function () {
+        var start =  $scope.startDate;
+        var end = $scope.endDate;
+        $http.post('/history',{"start" : start, "end" : end})
+        .success(function (results) {
+                console.log("true");
+                $scope.dateList = results.result;
+            }).error(function () {
+                console.log("false");
 
+        })
+
+    }
 }
 
 function AboutController($scope)
@@ -41,9 +53,9 @@ function AboutController($scope)
 
 }
 
-function LoginController($scope, $http, AuthenticationService, $location)
+function LoginController($scope, AuthenticationService, $location)
 {
-    var vm = this;
+
 
     (function initController()
         {
@@ -82,7 +94,16 @@ function ConsoleController($scope)
 
 }
 
-function LogoutController($scope)
+function LogoutController($scope, AuthenticationService, $location, $rootScope)
 {
+    (function initController() {
+            if(!AuthenticationService.IsLogged()) {
+                $rootScope.isLoggedin = false;
+                $location.path('/');
+            }
+        })();
 
+    AuthenticationService.ClearCredentials();
+    $scope.isLoggedin = false;
+    $location.path('/');
 }

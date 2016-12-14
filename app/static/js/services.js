@@ -36,37 +36,43 @@ angular.module('AuthenticationService', ['ngCookies'])
 
         return service;
 
-        function Login(email, password, callback) {
+        function Login(email, password, callback)
+        {
             $http.post('/login', { "email": email, "password": password })
-               .success(function (response) {
-                    console.log("W Login w success");
+               .success(function (response)
+                {
                     callback(response);
                 });
 
         }
 
-        function IsLogged(){
-            if($cookieStore.get('logged-in') === true){
+        function IsLogged()
+        {
+            if($cookieStore.get('logged-in') === true)
+            {
                 return true;
-            } else {
-                console.log("W else");
+            } else
+            {
                 return false;
             }
         }
 
-        function GetLoggedEmail(){
+        function GetLoggedEmail()
+        {
             return $cookieStore.get('email');
         }
 
 
-        function SetCredentials(email, password) {
+        function SetCredentials(email, password)
+        {
             var authdata = Base64.encode(email + ':' + password);
             $cookieStore.put('logged-in', true);
             $cookieStore.put('email', email);
             $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata;
         }
 
-        function ClearCredentials() {
+        function ClearCredentials()
+        {
             $cookieStore.remove('logged-in');
             $cookieStore.remove('email');
             $http.defaults.headers.common.Authorization = 'Basic';
@@ -74,17 +80,20 @@ angular.module('AuthenticationService', ['ngCookies'])
         }
     });
 
-var Base64 = {
+var Base64 =
+    {
 
         keyStr: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=',
 
-        encode: function (input) {
+        encode: function (input)
+        {
             var output = "";
             var chr1, chr2, chr3 = "";
             var enc1, enc2, enc3, enc4 = "";
             var i = 0;
 
-            do {
+            do
+            {
                 chr1 = input.charCodeAt(i++);
                 chr2 = input.charCodeAt(i++);
                 chr3 = input.charCodeAt(i++);
@@ -94,9 +103,11 @@ var Base64 = {
                 enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
                 enc4 = chr3 & 63;
 
-                if (isNaN(chr2)) {
+                if (isNaN(chr2))
+                {
                     enc3 = enc4 = 64;
-                } else if (isNaN(chr3)) {
+                } else if (isNaN(chr3))
+                {
                     enc4 = 64;
                 }
 
@@ -112,22 +123,24 @@ var Base64 = {
             return output;
         },
 
-        decode: function (input) {
+        decode: function (input)
+        {
             var output = "";
             var chr1, chr2, chr3 = "";
             var enc1, enc2, enc3, enc4 = "";
             var i = 0;
 
-            // remove all characters that are not A-Z, a-z, 0-9, +, /, or =
             var base64test = /[^A-Za-z0-9\+\/\=]/g;
-            if (base64test.exec(input)) {
+            if (base64test.exec(input))
+            {
                 window.alert("There were invalid base64 characters in the input text.\n" +
                     "Valid base64 characters are A-Z, a-z, 0-9, '+', '/',and '='\n" +
                     "Expect errors in decoding.");
             }
             input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");
 
-            do {
+            do
+            {
                 enc1 = this.keyStr.indexOf(input.charAt(i++));
                 enc2 = this.keyStr.indexOf(input.charAt(i++));
                 enc3 = this.keyStr.indexOf(input.charAt(i++));
@@ -139,10 +152,12 @@ var Base64 = {
 
                 output = output + String.fromCharCode(chr1);
 
-                if (enc3 != 64) {
+                if (enc3 != 64)
+                {
                     output = output + String.fromCharCode(chr2);
                 }
-                if (enc4 != 64) {
+                if (enc4 != 64)
+                {
                     output = output + String.fromCharCode(chr3);
                 }
 
