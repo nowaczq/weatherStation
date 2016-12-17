@@ -24,6 +24,42 @@ function IndexController(AuthenticationService, $timeout,$rootScope)
             }
         }
     )();
+
+
+}
+
+function CurrentController($scope,$http,$timeout)
+{
+    var cur = function()
+    {
+        $scope.currentValues = {};
+        $http.get('/current').success
+        (
+            function (results)
+            {
+                $scope.currentValues = results.result;
+
+                console.log($scope.currentValues[0]);
+            }
+        );
+        $timeout(cur, 5000);
+    };
+    cur();
+
+
+
+    // setInterval($scope.current = function(){
+    //     $http.get('/current');
+    //     console.log("no elo");
+    // },5000);
+        // $http.get('/current').success(
+        //     function(results)
+        //     {
+        //         $scope.stats = results.result;
+        //         // setTimeout($scope.current, 5000);
+        //     }
+        // )
+    //}
 }
 
 function StatsController($scope)

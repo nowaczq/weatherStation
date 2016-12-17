@@ -15,6 +15,10 @@ angular.module('weatherStation', ['angularFlaskServices','AuthenticationService'
                  templateUrl: '../static/partials/login.html',
                  controller: LoginController
              }).
+             when('/current', {
+                 templateUrl: '../static/partials/current.html',
+                 controller: CurrentController
+             }).
              when('/history', {
                  templateUrl: '../static/partials/history.html',
                  controller: HistoryController

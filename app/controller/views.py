@@ -9,6 +9,16 @@ def index():
     return send_file("templates/index.html")
 
 
+@app.route('/current', methods=['GET','POST'])
+def get_current():
+    result_list = []
+    current_stats = CurrentValues.query.join(HistoricalValues.current).with_entities(CurrentValues.temperature,
+        CurrentValues.humidity, CurrentValues.pressure, HistoricalValues.date).order_by(CurrentValues.id.desc()).first()
+
+    result_list.append({"temperature" : current_stats[0], "humidity" : current_stats[1], "pressure" : current_stats[2], "date" : current_stats[3]})
+
+    return jsonify(result = result_list)
+
 @app.route('/login', methods=['POST'])
 def login():
     data = request.json

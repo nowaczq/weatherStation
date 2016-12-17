@@ -26,7 +26,7 @@ class SensorData():
 
     def insert_data_to_db_timestamp(self,time_stamp):
         s = sched.scheduler(time.time, time.sleep)
-        while True:
+        while 1:
             s.enter(time_stamp, 1, self.insert_data_to_db, ())
             s.run()
 
