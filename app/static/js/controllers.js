@@ -28,38 +28,28 @@ function IndexController(AuthenticationService, $timeout,$rootScope)
 
 }
 
-function CurrentController($scope,$http,$timeout)
+function CurrentController($scope,$http,$timeout,$location)
 {
-    var cur = function()
+    var cur = function ()
     {
-        $scope.currentValues = {};
-        $http.get('/current').success
-        (
-            function (results)
-            {
-                $scope.currentValues = results.result;
+        if ($location.path() === '/current')
+        {
+            $http.get('current').success
+            (
+                function(results)
+                {
+                    $scope.currentValues = results.result;
+                    console.log($scope.currentValues[0]);
+                }
 
-                console.log($scope.currentValues[0]);
-            }
-        );
-        $timeout(cur, 5000);
+            );
+            $timeout(cur, 5000);
+        }
     };
-    cur();
 
+    if ($location.path() === '/current')
+        cur();
 
-
-    // setInterval($scope.current = function(){
-    //     $http.get('/current');
-    //     console.log("no elo");
-    // },5000);
-        // $http.get('/current').success(
-        //     function(results)
-        //     {
-        //         $scope.stats = results.result;
-        //         // setTimeout($scope.current, 5000);
-        //     }
-        // )
-    //}
 }
 
 function StatsController($scope)
@@ -69,11 +59,13 @@ function StatsController($scope)
 
 function HistoryController($scope, $http)
 {
+    $scope.dateList = {};
     $scope.history = function () {
         var start =  $scope.startDate;
         var end = $scope.endDate;
         $http.post('/history',{"start" : start, "end" : end})
         .success(function (results) {
+                $scope.dateList = {};
                 console.log("true");
                 $scope.dateList = results.result;
             }).error(function () {
@@ -81,6 +73,48 @@ function HistoryController($scope, $http)
 
         })
 
+    }
+    $scope.temp = function ()
+    {
+        var start =  $scope.startDate;
+        var end = $scope.endDate;
+        $http.post('/tempHistory',{"start" : start, "end" : end})
+        .success(function (results) {
+                $scope.dateList = {};
+                console.log("true");
+                $scope.dateList = results.result;
+            }).error(function () {
+                console.log("false");
+
+        })
+    }
+    $scope.hum = function ()
+    {
+        var start =  $scope.startDate;
+        var end = $scope.endDate;
+        $http.post('/humHistory',{"start" : start, "end" : end})
+        .success(function (results) {
+                $scope.dateList = {};
+                console.log("true");
+                $scope.dateList = results.result;
+            }).error(function () {
+                console.log("false");
+
+        })
+    }
+    $scope.press = function ()
+    {
+        var start =  $scope.startDate;
+        var end = $scope.endDate;
+        $http.post('/pressHistory',{"start" : start, "end" : end})
+        .success(function (results) {
+                $scope.dateList = {};
+                console.log("true");
+                $scope.dateList = results.result;
+            }).error(function () {
+                console.log("false");
+
+        })
     }
 }
 

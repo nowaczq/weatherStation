@@ -1,0 +1,35 @@
+<div>
+    <form name="statsForm">
+        <h2>Podaj daty</h2>
+        <label>Start</label>
+        <input ng-model="startDate" name="startDate" type="text" id="inputStart" required="" autofocus=""/>
+        <label>Koniec</label>
+        <input ng-model="endDate" name="endDate" type="text" id="inputEnd" required="" autofocus=""/>
+        <br/>
+        <button ng-click="" name="tempComplex">Temperatura pełne dane statystyczne</button>
+        <button ng-click="" name="pressComplex">Ciśnienie pełne dane statystyczne</button>
+        <button ng-click="" name="humComplex">Wilgotność pełne dane statystyczne</button>
+        <br/>
+        <button ng-click="" name="tempAvg">Średnia temperatura</button>
+        <button ng-click="" name="humAvg">Średnia wilgotność</button>
+        <button ng-click="" name="pressAvg">Średnie ciśnienie</button>
+        <br/>
+        <button ng-click="" name="tempMaxMin">Wartości skrajne temperatury</button>
+        <button ng-click="" name="humMaxMin">Wartości skrajne wilgotności</button>
+        <button ng-click="" name="pressMaxMin">Wartości skrajne ciśnienia</button>
+        <br/>
+        <button ng-click="" name="tempMed">Mediana temperatury</button>
+        <button ng-click="" name="humMed">Mediana wilgotności</button>
+        <button ng-click="" name="pressMed">Mediana ciśnienia</button>
+
+    </form>
+
+    <table>
+        <tr>
+            <th>Temperatura</th>
+        </tr>
+        <tr ng-repeat="date in dateList">
+            <td>{{date.temperature}}</td>
+        </tr>
+    </table>
+</div>

@@ -1,25 +1,29 @@
 <div>
-    <form name="historyForm" ng-submit="history()">
+    <form name="historyForm">
         <h2>Podaj daty</h2>
         <label>Start</label>
         <input ng-model="startDate" name="startDate" type="text" id="inputStart" required="" autofocus=""/>
         <label>Koniec</label>
         <input ng-model="endDate" name="endDate" type="text" id="inputEnd" required="" autofocus=""/>
-        <button type="submit">Wybierz</button>
+        <button ng-click="history()" name="historyAll">Cała historia</button>
+        <button ng-click="temp()" name="temp">Temperatura</button>
+        <button ng-click="press()" name="press">Ciśnienie</button>
+        <button ng-click="hum()" name="hum">Wilgotność</button>
+
     </form>
-    <!--<ol>-->
-        <!--<li ng-repeat="date in dateList">{{date.temperature}} ,{{date.humidity}}, {{date.pressure}} </li>-->
-    <!--</ol>-->
+
     <table>
         <tr>
             <th>Temperatura</th>
             <th>Wilgotność</th>
             <th>Ciśnienie</th>
+            <th>Data</th>
         </tr>
         <tr ng-repeat="date in dateList">
             <td>{{date.temperature}}</td>
             <td>{{date.humidity}}</td>
             <td>{{date.pressure}}</td>
+            <td>{{date.date}}</td>
         </tr>
     </table>
 </div>

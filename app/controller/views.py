@@ -1,8 +1,10 @@
 from app import app
-from flask import Flask,send_file, render_template, flash, redirect, session, url_for, g, request, jsonify
-import json
+from flask import send_file,request, jsonify
 import hashlib
-from app.dao.daoObjects import User,HistoricalValues,CurrentValues
+from app.model.databaseOperations import DatabaseOperations
+from app.model.mathematicalOperations import MathematicalOperations
+
+
 
 @app.route("/")
 def index():
@@ -11,12 +13,7 @@ def index():
 
 @app.route('/current', methods=['GET','POST'])
 def get_current():
-    result_list = []
-    current_stats = CurrentValues.query.join(HistoricalValues.current).with_entities(CurrentValues.temperature,
-        CurrentValues.humidity, CurrentValues.pressure, HistoricalValues.date).order_by(CurrentValues.id.desc()).first()
-
-    result_list.append({"temperature" : current_stats[0], "humidity" : current_stats[1], "pressure" : current_stats[2], "date" : current_stats[3]})
-
+    result_list = DatabaseOperations().get_current_stats()
     return jsonify(result = result_list)
 
 @app.route('/login', methods=['POST'])
@@ -24,12 +21,10 @@ def login():
     data = request.json
     login = data['email']
     password = hashlib.md5(data['password'].encode()).hexdigest()
-    db_login = User.query.with_entities(User.login).filter_by(login = login).first()
-    db_password = User.query.with_entities(User.password).filter_by(login = login).first()
-    if login == db_login[0] and password == db_password[0]:
-        return jsonify({'result': True})
+    if DatabaseOperations().authenticate_user(login,password):
+        return jsonify({"result" : True})
     else:
-        return jsonify({'result': False})
+        return jsonify({"result": False})
 
 
 @app.route('/history', methods=['GET','POST'])
@@ -38,16 +33,7 @@ def get_history():
     print data
     date_start = data['start']
     date_end = data['end']
-    historical_data = HistoricalValues.query.join(CurrentValues.history).filter(HistoricalValues.date >=  date_start)\
-        .filter(HistoricalValues.date <=  date_end)\
-        .values(CurrentValues.temperature, CurrentValues.humidity, CurrentValues.pressure, HistoricalValues.date)
-    result_list = []
-
-    for temperature, humidity, pressure, date in historical_data:
-        result_list.append(
-            {"temperature" : temperature, "humidity" : humidity, "pressure" : pressure, "date" : date}
-        )
-
+    result_list = DatabaseOperations().get_historical_values(date_start, date_end)
     return jsonify(result = result_list)
 
 
@@ -56,17 +42,7 @@ def get_temp_history():
     data = request.json
     date_start = data['start']
     date_end = data['end']
-    historical_temp_data = HistoricalValues.query.join(CurrentValues.history).filter(HistoricalValues.date >=  date_start)\
-        .filter(HistoricalValues.date <=  date_end)\
-        .values(CurrentValues.temperature, HistoricalValues.date)
-
-    result_list = []
-
-    for temperature, date in historical_temp_data:
-        result_list.append(
-            {"temperature" : temperature, "date" : date}
-        )
-
+    result_list = DatabaseOperations().get_historical_temperature(date_start, date_end)
     return jsonify(result = result_list)
 
 @app.route('/humHistory', methods=['GET','POST'])
@@ -74,18 +50,7 @@ def get_hum_history():
     data = request.json
     date_start = data['start']
     date_end = data['end']
-    historical_hum_data = HistoricalValues.query.join(CurrentValues.history).filter(
-        HistoricalValues.date >= date_start) \
-        .filter(HistoricalValues.date <= date_end) \
-        .values(CurrentValues.humidity, HistoricalValues.date)
-
-    result_list = []
-
-    for humidity, date in historical_hum_data:
-        result_list.append(
-            {"humidity": humidity, "date": date}
-        )
-
+    result_list = DatabaseOperations().get_historical_humidity(date_start, date_end)
     return jsonify(result=result_list)
 
 
@@ -94,16 +59,79 @@ def get_press_history():
     data = request.json
     date_start = data['start']
     date_end = data['end']
-    historical_press_data = HistoricalValues.query.join(CurrentValues.history).filter(
-        HistoricalValues.date >= date_start) \
-        .filter(HistoricalValues.date <= date_end) \
-        .values(CurrentValues.pressure, HistoricalValues.date)
+    result_list = DatabaseOperations().get_historical_pressure(date_start, date_end)
+    return jsonify(result=result_list)
 
-    result_list = []
 
-    for pressure, date in historical_press_data:
-        result_list.append(
-            {"pressure": pressure, "date": date}
-        )
+@app.route('/tempAvg', methods=['GET','POST'])
+def get_avg_temp():
+    data = request.json
+    date_start = data['start']
+    date_end = data['end']
+    result_list = MathematicalOperations().temperature_average(date_start,date_end)
+    return jsonify(result = result_list)
 
+@app.route('/humAvg', methods=['GET','POST'])
+def get_avg_hum():
+    data = request.json
+    date_start = data['start']
+    date_end = data['end']
+    result_list = MathematicalOperations().humidity_average(date_start, date_end)
+    return jsonify(result = result_list)
+
+@app.route('/pressAvg', methods=['GET','POST'])
+def get_avg_press():
+    data = request.json
+    date_start = data['start']
+    date_end = data['end']
+    result_list = MathematicalOperations().pressure_average(date_start, date_end)
+    return jsonify(result = result_list)
+
+@app.route('/tempMinMax',methods=['GET','POST'])
+def get_min_max_temp():
+    data = request.json
+    date_start = data['start']
+    date_end = data['end']
+    result_list = MathematicalOperations().temperature_min_max(date_start,date_end)
+    return jsonify(result=result_list)
+
+
+@app.route('/humMinMax',methods=['GET','POST'])
+def get_min_max_hum():
+    data = request.json
+    date_start = data['start']
+    date_end = data['end']
+    result_list = MathematicalOperations().humidity_min_max(date_start, date_end)
+    return jsonify(result=result_list)
+
+@app.route('/pressMinMax',methods=['GET','POST'])
+def get_min_max_press():
+    data = request.json
+    date_start = data['start']
+    date_end = data['end']
+    result_list = MathematicalOperations().pressure_min_max(date_start, date_end)
+    return jsonify(result=result_list)
+
+@app.route('/tempMed',methods=['GET','POST'])
+def get_med_temp():
+    data = request.json
+    date_start = data['start']
+    date_end = data['end']
+    result_list = MathematicalOperations().temperature_median(date_start, date_end)
+    return jsonify(result=result_list)
+
+@app.route('/humMed',methods=['GET','POST'])
+def get_med_hum():
+    data = request.json
+    date_start = data['start']
+    date_end = data['end']
+    result_list = MathematicalOperations().humidity_median(date_start, date_end)
+    return jsonify(result=result_list)
+
+@app.route('/pressMed',methods=['GET','POST'])
+def get_med_press():
+    data = request.json
+    date_start = data['start']
+    date_end = data['end']
+    result_list = MathematicalOperations().pressure_median(date_start, date_end)
     return jsonify(result=result_list)
