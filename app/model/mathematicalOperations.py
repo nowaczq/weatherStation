@@ -17,7 +17,7 @@ class MathematicalOperations():
 
         avg = avg / n
         result_list = []
-        result_list.append({"temperature": avg})
+        result_list.append({"temperatureAvg": avg})
         return result_list
 
     def pressure_average(self,start,stop):
@@ -32,11 +32,11 @@ class MathematicalOperations():
         avg = avg / n
 
         result_list = []
-        result_list.append({"pressure" : avg})
+        result_list.append({"pressureAvg" : avg})
         return result_list
 
     def humidity_average(self,start,stop):
-        hum_table = DatabaseOperations().get_historical_humidity(start,stop)
+        hum_table = DatabaseOperations().get_raw_historical_humidity(start,stop)
         avg = 0
         n = 0
 
@@ -46,7 +46,7 @@ class MathematicalOperations():
 
         avg = avg / n
         result_list = []
-        result_list.append({"humidity" : avg})
+        result_list.append({"humidityAvg" : avg})
         return result_list
 
     def temperature_min_max(self,start,stop):
@@ -61,7 +61,7 @@ class MathematicalOperations():
         max = temp_tab[len(temp_tab)-1]
 
         result_list = []
-        result_list.append({"max" : max, "min" : min})
+        result_list.append({"maxTemp" : max, "minTemp" : min})
 
         return result_list
 
@@ -77,12 +77,12 @@ class MathematicalOperations():
         max = press_tab[len(press_tab)-1]
 
         result_list = []
-        result_list.append({"max" : max, "min" : min})
+        result_list.append({"maxPress" : max, "minPress" : min})
 
         return result_list
 
     def humidity_min_max(self,start,stop):
-        hum_table = DatabaseOperations().get_historical_humidity(start,stop)
+        hum_table = DatabaseOperations().get_raw_historical_humidity(start,stop)
         hum_tab = []
 
         for hum in hum_table:
@@ -93,7 +93,7 @@ class MathematicalOperations():
         max = hum_tab[len(hum_tab)-1]
 
         result_list = []
-        result_list.append({"max" : max, "min" : min})
+        result_list.append({"maxHum" : max, "minHum" : min})
 
         return result_list
 
@@ -112,12 +112,12 @@ class MathematicalOperations():
             med = temp_tab[(len(temp_tab) + 1) / 2]
 
         result_list = []
-        result_list.append({"temperature" : med})
+        result_list.append({"temperatureMed" : med})
 
         return result_list
 
     def humidity_median(self, start, stop):
-        hum_table = DatabaseOperations().get_historical_humidity(start, stop)
+        hum_table = DatabaseOperations().get_raw_historical_humidity(start, stop)
         hum_tab = []
 
         for hum in hum_table:
@@ -130,7 +130,7 @@ class MathematicalOperations():
             med = hum_tab[(len(hum_tab) + 1) / 2]
 
         result_list = []
-        result_list.append({"temperature": med})
+        result_list.append({"humidityMed": med})
 
         return result_list
 
@@ -148,6 +148,6 @@ class MathematicalOperations():
             med = press_tab[(len(press_tab) + 1) / 2]
 
         result_list = []
-        result_list.append({"temperature": med})
+        result_list.append({"pressureMed": med})
 
         return result_list

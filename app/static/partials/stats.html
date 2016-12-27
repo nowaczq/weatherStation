@@ -6,30 +6,56 @@
         <label>Koniec</label>
         <input ng-model="endDate" name="endDate" type="text" id="inputEnd" required="" autofocus=""/>
         <br/>
-        <button ng-click="" name="tempComplex">Temperatura pełne dane statystyczne</button>
-        <button ng-click="" name="pressComplex">Ciśnienie pełne dane statystyczne</button>
-        <button ng-click="" name="humComplex">Wilgotność pełne dane statystyczne</button>
+        <button ng-click="tempFullStats()" name="tempFullStats">Temperatura pełne dane statystyczne</button>
+        <button ng-click="pressFullStats()" name="pressFullStats">Ciśnienie pełne dane statystyczne</button>
+        <button ng-click="humFullStats()" name="humFullStats">Wilgotność pełne dane statystyczne</button>
         <br/>
-        <button ng-click="" name="tempAvg">Średnia temperatura</button>
-        <button ng-click="" name="humAvg">Średnia wilgotność</button>
-        <button ng-click="" name="pressAvg">Średnie ciśnienie</button>
+        <button ng-click="tempAvg()" name="tempAvg">Średnia temperatura</button>
+        <button ng-click="humAvg()" name="humAvg">Średnia wilgotność</button>
+        <button ng-click="pressAvg()" name="pressAvg">Średnie ciśnienie</button>
         <br/>
-        <button ng-click="" name="tempMaxMin">Wartości skrajne temperatury</button>
-        <button ng-click="" name="humMaxMin">Wartości skrajne wilgotności</button>
-        <button ng-click="" name="pressMaxMin">Wartości skrajne ciśnienia</button>
+        <button ng-click="tempMinMax()" name="tempMinMax">Wartości skrajne temperatury</button>
+        <button ng-click="humMinMax()" name="humMinMax">Wartości skrajne wilgotności</button>
+        <button ng-click="pressMinMax()" name="pressMinMax">Wartości skrajne ciśnienia</button>
         <br/>
-        <button ng-click="" name="tempMed">Mediana temperatury</button>
-        <button ng-click="" name="humMed">Mediana wilgotności</button>
-        <button ng-click="" name="pressMed">Mediana ciśnienia</button>
+        <button ng-click="tempMed()" name="tempMed">Mediana temperatury</button>
+        <button ng-click="humMed()" name="humMed">Mediana wilgotności</button>
+        <button ng-click="pressMed()" name="pressMed">Mediana ciśnienia</button>
 
     </form>
 
     <table>
         <tr>
             <th>Temperatura</th>
+            <th>Mediana</th>
+            <th>Ciśnienie</th>
+            <th>Mediana</th>
+            <th>Wilgotność</th>
+            <th>Mediana</th>
         </tr>
         <tr ng-repeat="date in dateList">
-            <td>{{date.temperature}}</td>
+            <td>{{date.temperatureAvg}}</td>
+            <td>{{date.temperatureMed}}</td>
+            <td>{{date.pressureAvg}}</td>
+            <td>{{date.pressureMed}}</td>
+            <td>{{date.humidityAvg}}</td>
+            <td>{{date.humidityMed}}</td>
+        </tr>
+        <tr>
+            <th>Min temperatura</th>
+            <th>Max temperatura</th>
+            <th>Min wilgotność</th>
+            <th>Max wilgotność</th>
+            <th>Min ciśnienie</th>
+            <th>Max ciśnienie</th>
+        </tr>
+        <tr ng-repeat="range in dateList">
+            <td>{{range.minTemp}}</td>
+            <td>{{range.maxTemp}}</td>
+            <td>{{range.minHum}}</td>
+            <td>{{range.maxHum}}</td>
+            <td>{{range.minPress}}</td>
+            <td>{{range.maxPress}}</td>
         </tr>
     </table>
 </div>

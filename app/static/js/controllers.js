@@ -34,7 +34,7 @@ function CurrentController($scope,$http,$timeout,$location)
     {
         if ($location.path() === '/current')
         {
-            $http.get('current').success
+            $http.get('/current').success
             (
                 function(results)
                 {
@@ -52,9 +52,165 @@ function CurrentController($scope,$http,$timeout,$location)
 
 }
 
-function StatsController($scope)
+function StatsController($scope,$http)
 {
+    $scope.dateList = {};
+    $scope.tempAvg = function () {
+        var start =  $scope.startDate;
+        var end = $scope.endDate;
+        $http.post('/tempAvg',{"start" : start, "end" : end})
+        .success(function (results) {
+                $scope.dateList = {};
+                console.log("true");
+                $scope.dateList = results.result;
+            }).error(function () {
+                console.log("false");
 
+        })
+    };
+    $scope.humAvg = function () {
+        var start =  $scope.startDate;
+        var end = $scope.endDate;
+        $http.post('/humAvg',{"start" : start, "end" : end})
+        .success(function (results) {
+                $scope.dateList = {};
+                console.log("true");
+                $scope.dateList = results.result;
+            }).error(function () {
+                console.log("false");
+
+        })
+    };
+    $scope.pressAvg = function () {
+        var start =  $scope.startDate;
+        var end = $scope.endDate;
+        $http.post('/pressAvg',{"start" : start, "end" : end})
+        .success(function (results) {
+                $scope.dateList = {};
+                console.log("true");
+                $scope.dateList = results.result;
+            }).error(function () {
+                console.log("false");
+
+        })
+    };
+    $scope.tempMed = function () {
+        var start =  $scope.startDate;
+        var end = $scope.endDate;
+        $http.post('/tempMed',{"start" : start, "end" : end})
+        .success(function (results) {
+                $scope.dateList = {};
+                console.log("true");
+                $scope.dateList = results.result;
+            }).error(function () {
+                console.log("false");
+
+        })
+    };
+    $scope.humMed = function () {
+        var start =  $scope.startDate;
+        var end = $scope.endDate;
+        $http.post('/humMed',{"start" : start, "end" : end})
+        .success(function (results) {
+                $scope.dateList = {};
+                console.log("true");
+                $scope.dateList = results.result;
+            }).error(function () {
+                console.log("false");
+
+        })
+    };
+    $scope.pressMed = function () {
+        var start =  $scope.startDate;
+        var end = $scope.endDate;
+        $http.post('/pressMed',{"start" : start, "end" : end})
+        .success(function (results) {
+                $scope.dateList = {};
+                console.log("true");
+                $scope.dateList = results.result;
+            }).error(function () {
+                console.log("false");
+
+        })
+    };
+    $scope.pressMinMax = function () {
+        var start =  $scope.startDate;
+        var end = $scope.endDate;
+        $http.post('/pressMinMax',{"start" : start, "end" : end})
+        .success(function (results) {
+                $scope.dateList = {};
+                console.log("true");
+                $scope.dateList = results.result;
+            }).error(function () {
+                console.log("false");
+
+        })
+    };
+    $scope.humMinMax = function () {
+        var start =  $scope.startDate;
+        var end = $scope.endDate;
+        $http.post('/humMinMax',{"start" : start, "end" : end})
+        .success(function (results) {
+                $scope.dateList = {};
+                console.log("true");
+                $scope.dateList = results.result;
+            }).error(function () {
+                console.log("false");
+
+        })
+    };
+    $scope.tempMinMax = function () {
+        var start =  $scope.startDate;
+        var end = $scope.endDate;
+        $http.post('/tempMinMax',{"start" : start, "end" : end})
+        .success(function (results) {
+                $scope.dateList = {};
+                console.log("true");
+                $scope.dateList = results.result;
+            }).error(function () {
+                console.log("false");
+
+        })
+    };
+    $scope.tempFullStats = function () {
+        var start =  $scope.startDate;
+        var end = $scope.endDate;
+        $http.post('/tempFullStats',{"start" : start, "end" : end})
+        .success(function (results) {
+                $scope.dateList = {};
+                console.log("true");
+                $scope.dateList = results.result;
+            }).error(function () {
+                console.log("false");
+
+        })
+    };
+    $scope.pressFullStats = function () {
+        var start =  $scope.startDate;
+        var end = $scope.endDate;
+        $http.post('/pressFullStats',{"start" : start, "end" : end})
+        .success(function (results) {
+                $scope.dateList = {};
+                console.log("true");
+                $scope.dateList = results.result;
+            }).error(function () {
+                console.log("false");
+
+        })
+    };
+    $scope.humFullStats = function () {
+        var start =  $scope.startDate;
+        var end = $scope.endDate;
+        $http.post('/humFullStats',{"start" : start, "end" : end})
+        .success(function (results) {
+                $scope.dateList = {};
+                console.log("true");
+                $scope.dateList = results.result;
+            }).error(function () {
+                console.log("false");
+
+        })
+    };
 }
 
 function HistoryController($scope, $http)
@@ -73,7 +229,7 @@ function HistoryController($scope, $http)
 
         })
 
-    }
+    };
     $scope.temp = function ()
     {
         var start =  $scope.startDate;
@@ -87,7 +243,7 @@ function HistoryController($scope, $http)
                 console.log("false");
 
         })
-    }
+    };
     $scope.hum = function ()
     {
         var start =  $scope.startDate;
@@ -101,7 +257,7 @@ function HistoryController($scope, $http)
                 console.log("false");
 
         })
-    }
+    };
     $scope.press = function ()
     {
         var start =  $scope.startDate;
@@ -116,6 +272,29 @@ function HistoryController($scope, $http)
 
         })
     }
+}
+
+function ConsoleController($scope,$http)
+{
+    $scope.cmdBody = {};
+    $scope.cmd = function ()
+    {
+        var command = $scope.script;
+        console.log($scope.script);
+        $http.post('/consoleStuff',{"script" : command})
+            .success(function(results){
+                $scope.cmdBody = {};
+                console.log("true");
+                $scope.cmdBody = results.result;
+                console.log(results.result);
+                }
+
+            ).error(function(){
+                console.log("false");
+        })
+
+    }
+
 }
 
 function AboutController($scope)
@@ -159,10 +338,7 @@ function LoginController($scope, AuthenticationService, $location)
 }
 
 
-function ConsoleController($scope)
-{
 
-}
 
 function LogoutController($scope, AuthenticationService, $location, $rootScope)
 {

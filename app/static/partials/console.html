@@ -1,0 +1,13 @@
+<div>
+    <form name="commandForm">
+        <label>Komenda</label>
+        <input ng-model="script" name="script" type="text" id="inputScript" required="" autofocus=""/>
+        <button ng-click="cmd()" name="commandScript">Cała historia</button>
+    </form>
+    <table>
+        <tr> Wynik polecenia</tr>
+        <tr ng-repeat="a in cmdBody">
+            <td>{{a.script}}</td>
+        </tr>
+    </table>
+</div>
