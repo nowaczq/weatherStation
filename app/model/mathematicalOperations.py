@@ -26,7 +26,7 @@ class MathematicalOperations():
         n = 0
 
         for press in press_table:
-            avg = avg + press[0]
+            avg = avg + press[0] / 100
             n = n + 1
 
         avg = avg / n
@@ -70,7 +70,7 @@ class MathematicalOperations():
         press_tab = []
 
         for press in press_table:
-            press_tab.append(press[0])
+            press_tab.append(press[0] / 100)
 
         press_tab.sort()
         min = press_tab[0]
@@ -139,7 +139,7 @@ class MathematicalOperations():
         press_tab = []
 
         for press in press_table:
-            press_tab.append(press[0])
+            press_tab.append(press[0] / 100)
 
         press_tab.sort()
         if len(press_tab) % 2 == 0:

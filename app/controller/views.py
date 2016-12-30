@@ -141,6 +141,12 @@ def get_all_temp_stats():
     data = request.json
     date_start = data['start']
     date_end = data['end']
+    DatabaseOperations().set_temperature_stats(MathematicalOperations().temperature_min_max(date_start,date_end)[0].get('minTemp'),
+                                               MathematicalOperations().temperature_min_max(date_start, date_end)[0].get('maxTemp'),
+                                               MathematicalOperations().temperature_average(date_start,date_end)[0].get('temperatureAvg'),
+                                               MathematicalOperations().temperature_median(date_start, date_end)[0].get('temperatureMed'),
+                                               date_start,date_end
+                                               )
     result_list = []
     result_list.append({'temperatureAvg' : MathematicalOperations().temperature_average(date_start,date_end)[0].get('temperatureAvg'),
                         'temperatureMed' : MathematicalOperations().temperature_median(date_start,date_end)[0].get('temperatureMed'),
@@ -153,6 +159,12 @@ def get_all_hum_stats():
     data = request.json
     date_start = data['start']
     date_end = data['end']
+    DatabaseOperations().set_humidity_stats(MathematicalOperations().humidity_min_max(date_start, date_end)[0].get('minHum'),
+                                            MathematicalOperations().humidity_min_max(date_start, date_end)[0].get('maxHum'),
+                                            MathematicalOperations().humidity_average(date_start, date_end)[0].get('humidityAvg'),
+                                            MathematicalOperations().humidity_median(date_start, date_end)[0].get('humidityMed'),
+                                            date_start,date_end
+                                            )
     result_list = []
     result_list.append(
         {'humidityAvg': MathematicalOperations().humidity_average(date_start, date_end)[0].get('humidityAvg'),
@@ -166,6 +178,12 @@ def get_all_press_stats():
     data = request.json
     date_start = data['start']
     date_end = data['end']
+    DatabaseOperations().set_pressure_stats(MathematicalOperations().pressure_min_max(date_start, date_end)[0].get('minPress'),
+                                            MathematicalOperations().pressure_min_max(date_start, date_end)[0].get('maxPress'),
+                                            MathematicalOperations().pressure_average(date_start, date_end)[0].get('pressureAvg'),
+                                            MathematicalOperations().pressure_median(date_start, date_end)[0].get('pressureMed'),
+                                            date_start,date_end
+                                            )
     result_list = []
     result_list.append(
         {'pressureAvg': MathematicalOperations().pressure_average(date_start, date_end)[0].get('pressureAvg'),
@@ -174,15 +192,50 @@ def get_all_press_stats():
          'maxPress': MathematicalOperations().pressure_min_max(date_start, date_end)[0].get('maxPress')})
     return jsonify(result=result_list)
 
+@app.route('/fullStats',methods=['GET','POST'])
+def get_all_stats():
+    data = request.json
+    date_start = data['start']
+    date_end = data['end']
+    DatabaseOperations().set_all_stats(MathematicalOperations().temperature_min_max(date_start,date_end)[0].get('minTemp'),
+                                       MathematicalOperations().temperature_min_max(date_start, date_end)[0].get('maxTemp'),
+                                       MathematicalOperations().temperature_average(date_start,date_end)[0].get('temperatureAvg'),
+                                       MathematicalOperations().temperature_median(date_start, date_end)[0].get('temperatureMed'),
+                                       MathematicalOperations().humidity_min_max(date_start, date_end)[0].get('minHum'),
+                                       MathematicalOperations().humidity_min_max(date_start, date_end)[0].get('maxHum'),
+                                       MathematicalOperations().humidity_average(date_start, date_end)[0].get('humidityAvg'),
+                                       MathematicalOperations().humidity_median(date_start, date_end)[0].get('humidityMed'),
+                                       MathematicalOperations().pressure_min_max(date_start, date_end)[0].get('minPress'),
+                                       MathematicalOperations().pressure_min_max(date_start, date_end)[0].get('maxPress'),
+                                       MathematicalOperations().pressure_average(date_start, date_end)[0].get('pressureAvg'),
+                                       MathematicalOperations().pressure_median(date_start, date_end)[0].get('pressureMed'),
+                                       date_start, date_end
+                                       )
+    result_list = []
+    result_list.append(
+        {'pressureAvg': MathematicalOperations().pressure_average(date_start, date_end)[0].get('pressureAvg'),
+         'pressureMed': MathematicalOperations().pressure_median(date_start, date_end)[0].get('pressureMed'),
+         'minPress': MathematicalOperations().pressure_min_max(date_start, date_end)[0].get('minPress'),
+         'maxPress': MathematicalOperations().pressure_min_max(date_start, date_end)[0].get('maxPress'),
+         'humidityAvg': MathematicalOperations().humidity_average(date_start, date_end)[0].get('humidityAvg'),
+         'humidityMed': MathematicalOperations().humidity_median(date_start, date_end)[0].get('humidityMed'),
+         'minHum': MathematicalOperations().humidity_min_max(date_start, date_end)[0].get('minHum'),
+         'maxHum': MathematicalOperations().humidity_min_max(date_start, date_end)[0].get('maxHum'),
+         'temperatureAvg': MathematicalOperations().temperature_average(date_start, date_end)[0].get('temperatureAvg'),
+         'temperatureMed': MathematicalOperations().temperature_median(date_start, date_end)[0].get('temperatureMed'),
+         'minTemp': MathematicalOperations().temperature_min_max(date_start, date_end)[0].get('minTemp'),
+         'maxTemp': MathematicalOperations().temperature_min_max(date_start, date_end)[0].get('maxTemp')
+         })
+    return jsonify(result=result_list)
 
 @app.route('/consoleStuff',methods=['GET','POST'])
 def get_script_result():
-    print 'ala ma kota a kot ma wyjebongo'
     data = request.json
     script = data['script']
-    print script
     result_list = BashOperations().do_bash_script(script)
-    print result_list
     return jsonify(result=result_list)
 
-
+@app.route('/monitor',methods=['GET','POST'])
+def get_top_result():
+    result_list = BashOperations().do_bash_script('top -n 1 -b')
+    return jsonify(result=result_list)

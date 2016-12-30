@@ -1,29 +1,42 @@
-<div>
-    <form name="historyForm">
-        <h2>Podaj daty</h2>
-        <label>Start</label>
-        <input ng-model="startDate" name="startDate" type="text" id="inputStart" required="" autofocus=""/>
-        <label>Koniec</label>
-        <input ng-model="endDate" name="endDate" type="text" id="inputEnd" required="" autofocus=""/>
-        <button ng-click="history()" name="historyAll">Cała historia</button>
-        <button ng-click="temp()" name="temp">Temperatura</button>
-        <button ng-click="press()" name="press">Ciśnienie</button>
-        <button ng-click="hum()" name="hum">Wilgotność</button>
+<div class="row">
+    <h2>Podaj daty</h2>
+</div>
+<div class="row">
+    <div class="col-lg-6">
+        <form name="historyForm">
+            <label>Start</label>
+            <input ng-model="startDate" name="startDate" class="form-control" type="text" id="inputStart" required=""
+                   autofocus=""/>
+            <label>Koniec</label>
+            <input ng-model="endDate" name="endDate" class="form-control" type="text" id="inputEnd" required=""
+                   autofocus=""/>
+        </form>
+    </div>
+    <div class="col-lg-6">
+        <button class="btn btn-xs btn-primary" ng-click="history()" name="historyAll">Cała historia</button>
+        <button class="btn btn-xs btn-primary" ng-click="temp()" name="temp">Temperatura</button>
+        <button class="btn btn-xs btn-primary" ng-click="press()" name="press">Ciśnienie</button>
+        <button class="btn btn-xs btn-primary" ng-click="hum()" name="hum">Wilgotność</button>
+    </div>
+    <div class="col-lg-12">
+        <div id="bar-example">
 
-    </form>
-
-    <table>
-        <tr>
-            <th>Temperatura</th>
-            <th>Wilgotność</th>
-            <th>Ciśnienie</th>
-            <th>Data</th>
-        </tr>
-        <tr ng-repeat="date in dateList">
-            <td>{{date.temperature}}</td>
-            <td>{{date.humidity}}</td>
-            <td>{{date.pressure}}</td>
-            <td>{{date.date}}</td>
-        </tr>
-    </table>
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <table class="table table-bordered table-hover table-striped">
+            <tr>
+                <th>Temperatura</th>
+                <th>Wilgotność</th>
+                <th>Ciśnienie</th>
+                <th>Data</th>
+            </tr>
+            <tr ng-repeat="date in dateList">
+                <td>{{date.temperature}}</td>
+                <td>{{date.humidity}}</td>
+                <td>{{date.pressure}}</td>
+                <td>{{date.date}}</td>
+            </tr>
+        </table>
+    </div>
 </div>

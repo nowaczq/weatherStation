@@ -52,9 +52,44 @@ function CurrentController($scope,$http,$timeout,$location)
 
 }
 
+function MonitorController($scope,$location,$timeout,$http)
+{
+    var top = function ()
+    {
+        if ($location.path() === '/monitor')
+        {
+            $http.get('/monitor').success
+            (
+                function(results)
+                {
+                    $scope.topValue = results.result;
+
+                }
+            );
+            $timeout(top,1000);
+        }
+    };
+
+    if($location.path() === '/monitor')
+        top();
+}
+
 function StatsController($scope,$http)
 {
     $scope.dateList = {};
+    $scope.fullStats = function () {
+        var start =  $scope.startDate;
+        var end = $scope.endDate;
+        $http.post('/fullStats',{"start" : start, "end" : end})
+        .success(function (results) {
+                $scope.dateList = {};
+                console.log("true");
+                $scope.dateList = results.result;
+            }).error(function () {
+                console.log("false");
+
+        })
+    };
     $scope.tempAvg = function () {
         var start =  $scope.startDate;
         var end = $scope.endDate;
@@ -301,6 +336,8 @@ function AboutController($scope)
 {
 
 }
+
+
 
 function LoginController($scope, AuthenticationService, $location)
 {

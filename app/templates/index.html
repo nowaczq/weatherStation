@@ -14,25 +14,62 @@
     <script src="/static/lib/jquery/jquery-2.1.4.js"></script>
     <script src="/static/lib/jquery/main.js"></script>
 
-    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/yeti/bootstrap.min.css" rel="stylesheet" media="screen">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="/static/lib/js/bootstrap.js"></script>
+    <script src="/static/lib/js/plugins/morris/morris.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/lib/css/bootstrap.css">
+     <link rel="stylesheet" type="text/css" href="/static/lib/css/sb-admin.css">
+    <link rel="stylesheet" type="text/css" href="/static/lib/css/plugins/morris.css">
+    <link rel="stylesheet" type="text/css" href="/static/lib/font-awesome/css/font-awesome.css">
 </head>
-<body>
+<body style="background-color:white">
+<div id="wrapper">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Stacja pogodowa</a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav side-nav">
+                <li>
+                    <a href="/current"><i class="fa fa-fw fa-dashboard"></i>Bieżące dane</a>
+                </li>
+                <li>
+                    <a href="/stats"><i class="fa fa-fw fa-dashboard"></i>Statystyki</a>
+                </li>
+                <li>
+                    <a href="/history"><i class="fa fa-fw fa-dashboard"></i>Historia</a>
+                </li>
+                <li ng-hide="isLoggedin">
+                    <a href="/login"><i class="fa fa-fw fa-dashboard"></i>Logowanie</a>
+                </li>
+                <li ng-show="isLoggedin">
+                    <a href="/console"><i class="fa fa-fw fa-dashboard"></i>Konsola systemowa</a>
+                </li>
+                <li ng-show="isLoggedin">
+                    <a href="/monitor"><i class="fa fa-fw fa-dashboard"></i>Monitor zasobów</a>
+                </li>
+                <li ng-show="isLoggedin">
+                    <a href="/logout"><i class="fa fa-fw fa-dashboard"></i>Wyloguj</a>
+                </li>
+                <li>
+                    <a href="/about"><i class="fa fa-fw fa-dashboard"></i>O projekcie</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <div ng-view>
+            </div>
+        </div>
+    </div>
+</div>
 
-<h1>cosiek</h1>
-<a href="/">Strona główna</a>
-<a href="/current">Bieżące dane</a>
-<a href="/stats">Statystyki</a>
-<a href="/history">Historia</a>
-<span ng-hide="isLoggedin">
-    <a href="/login">Logowanie</a>
-</span>
-<a href="/about">O projekcie</a>
-<span ng-show="isLoggedin">
-    <a href="/console">Konsola systemowa</a>
-    <a href="/logout">Wyloguj</a>
-</span>
-
-
-<div ng-view></div>
 </body>
 </html>

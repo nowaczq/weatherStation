@@ -88,12 +88,14 @@ class TemperatureStats(base):
     minTemp = db.Column('min_temp', db.FLOAT, nullable = False)
     maxTemp = db.Column('max_temp', db.FLOAT, nullable = False)
     avgTemp = db.Column('avg_temp', db.FLOAT, nullable = False)
+    medTemp = db.Column('med_temp', db.FLOAT, nullable = False)
     statsTemp = relationship("StatisticValues", uselist = False, back_populates = "tempStats")
 
-    def __init__(self,minTemp,maxTemp,avgTemp):
+    def __init__(self,minTemp,maxTemp,avgTemp, medTemp):
         self.minTemp = minTemp
         self.maxTemp = maxTemp
         self.avgTemp = avgTemp
+        self.medTemp = medTemp
 
     def get_min(self):
         return self.minTemp
@@ -104,8 +106,11 @@ class TemperatureStats(base):
     def get_avg(self):
         return self.avgTemp
 
+    def get_med(self):
+        return self.medTemp
+
     def to_json(self):
-        return {'Temperature stats' : {'minimal' : self.minTemp , 'maximal' : self.maxTemp, 'average' : self.avgTemp}}
+        return {'Temperature stats' : {'minimal' : self.minTemp , 'maximal' : self.maxTemp, 'average' : self.avgTemp, 'median' : self.medTemp}}
 
     def __repr__(self):
         return '<Min temp %r>' % self.minTemp
@@ -116,12 +121,14 @@ class PressureStats(base):
     minPress = db.Column('min_press', db.FLOAT, nullable=False)
     maxPress = db.Column('max_press', db.FLOAT, nullable=False)
     avgPress = db.Column('avg_press', db.FLOAT, nullable=False)
+    medPress = db.Column('med_press', db.FLOAT, nullable=False)
     statsPress = relationship("StatisticValues", uselist = False, back_populates="pressStats")
 
-    def __init__(self, minPress, maxPress, avgPress):
+    def __init__(self, minPress, maxPress, avgPress, medPress):
         self.minPress = minPress
         self.maxPress = maxPress
         self.avgPress = avgPress
+        self.medPress = medPress
 
     def get_min(self):
         return self.minPress
@@ -132,8 +139,11 @@ class PressureStats(base):
     def get_avg(self):
         return self.avgPress
 
+    def get_med(self):
+        return self.med
+
     def to_json(self):
-        return {'Pressure stats': {'minimal': self.minPress, 'maximal': self.maxPress, 'average': self.avgPress}}
+        return {'Pressure stats': {'minimal': self.minPress, 'maximal': self.maxPress, 'average': self.avgPress, 'median' : self.medPress}}
 
     def __repr__(self):
         return '<Min hum %r>' % self.minPress
@@ -144,12 +154,14 @@ class HumidityStats(base):
     minHum = db.Column('min_hum', db.FLOAT, nullable=False)
     maxHum = db.Column('max_hum', db.FLOAT, nullable=False)
     avgHum = db.Column('avg_hum', db.FLOAT, nullable=False)
+    medHum = db.Column('med_hum',db.FLOAT, nullable=False)
     statsHum = relationship("StatisticValues", uselist = False, back_populates="humStats")
 
-    def __init__(self, minHum, maxHum, avgHum):
+    def __init__(self, minHum, maxHum, avgHum, medHum):
         self.minHum = minHum
         self.maxHum = maxHum
         self.avgHum = avgHum
+        self.medHum = medHum
 
     def get_min(self):
         return self.minHum
@@ -160,8 +172,11 @@ class HumidityStats(base):
     def get_avg(self):
         return self.avgHum
 
+    def get_med(self):
+        return self.medHum
+
     def to_json(self):
-        return {'Humidity stats': {'minimal': self.minHum, 'maximal': self.maxHum, 'average': self.avgHum}}
+        return {'Humidity stats': {'minimal': self.minHum, 'maximal': self.maxHum, 'average': self.avgHum, 'median' : self.medHum}}
 
     def __repr__(self):
         return '<Min hum %r>' % self.minHum
@@ -178,9 +193,12 @@ class StatisticValues(base):
     humStats = relationship("HumidityStats", back_populates = "statsHum")
     pressStats = relationship("PressureStats", back_populates = "statsPress")
 
-    def __init__(self,start,stop):
+    def __init__(self,start,stop,idTemp,idHum,idPress):
         self.periodStart = start
         self.periodStop = stop
+        self.idTempStats = idTemp
+        self.idHumStats = idHum
+        self.idPressStats = idPress
 
     def get_start(self):
         return self.periodStart

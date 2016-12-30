@@ -39,6 +39,10 @@ angular.module('weatherStation', ['angularFlaskServices','AuthenticationService'
                  templateUrl: '../static/partials/logout.html',
                  controller: LogoutController
              }).
+             when('/monitor', {
+                 templateUrl: '../static/partials/monitor.html',
+                 controller: MonitorController
+             }).
              otherwise({
                  redirectTo: '/'
              });

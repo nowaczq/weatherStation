@@ -11,15 +11,15 @@ class SensorData():
         temperature = self.sensor.read_temperature()
         humidity = self.sensor.read_humidity()
         pressure = self.sensor.read_pressure()
-        hectoPascals = humidity / 100
+        percent_humidity = humidity / 100
         if temperature and humidity and pressure:
-            insertSensorData = CurrentValues(float(temperature),float(hectoPascals),float(pressure))
-            db_session.add(insertSensorData)
+            insert_sensor_data = CurrentValues(float(temperature),float(percent_humidity),float(pressure))
+            db_session.add(insert_sensor_data)
             db_session.commit()
 
-            idCurrentData = CurrentValues.query.order_by(CurrentValues.id.desc()).first()
-            insertHistoricalData = HistoricalValues(datetime.now(),idCurrentData.id)
-            db_session.add(insertHistoricalData)
+            id_current_data = CurrentValues.query.order_by(CurrentValues.id.desc()).first()
+            insert_historical_data = HistoricalValues(datetime.now(),id_current_data.id)
+            db_session.add(insert_historical_data)
             db_session.commit()
 
 

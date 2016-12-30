@@ -10,8 +10,6 @@ class BashOperations():
         result_list = []
         result_list.append(text)
         tmp = result_list[0].split('\n')
-        for t in tmp:
-            print t
         result_list = []
         for t in tmp:
             result_list.append({"script" : t})

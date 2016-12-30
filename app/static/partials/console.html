@@ -4,7 +4,7 @@
         <input ng-model="script" name="script" type="text" id="inputScript" required="" autofocus=""/>
         <button ng-click="cmd()" name="commandScript">Cała historia</button>
     </form>
-    <table>
+    <table class="table table-bordered table-hover table-striped">
         <tr> Wynik polecenia</tr>
         <tr ng-repeat="a in cmdBody">
             <td>{{a.script}}</td>
