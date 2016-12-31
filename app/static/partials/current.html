@@ -1,7 +1,46 @@
-<div>
-    Temperatura, Wilgotność, Ciśnienie
-    <br>
-    {{currentValues[0].temperature}},{{currentValues[0].humidity}},{{currentValues[0].pressure}}
+<div class="row">
+    <div class="col-lg-12">
+        <h2>Aktualne dane</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-4 col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="huge">{{currentValues[0].temperature}} &#176;C</div>
+                        <div>Temperatura</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+        <div class="panel panel-green">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="huge">{{currentValues[0].humidity}} %</div>
+                        <div>Wilgotność</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+        <div class="panel panel-yellow">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="huge">{{currentValues[0].pressure}} hPa</div>
+                        <div>Ciśnienie</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 
 

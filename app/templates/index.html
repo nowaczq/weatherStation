@@ -14,7 +14,7 @@
     <script src="/static/lib/jquery/jquery-2.1.4.js"></script>
     <script src="/static/lib/jquery/main.js"></script>
 
-    <script src="/static/lib/js/plugins/morris/raphael-min.js"></script>
+    <script src="/static/lib/js/plugins/morris/raphael.min.js"></script>
     <script src="/static/lib/js/bootstrap.js"></script>
     <script src="/static/lib/js/plugins/morris/morris.js"></script>
     <link rel="stylesheet" type="text/css" href="/static/lib/css/bootstrap.css">
@@ -34,31 +34,34 @@
             </button>
             <a class="navbar-brand" href="/">Stacja pogodowa</a>
         </div>
+        <ul class="nav navbar-right top-nav">
+            <li ng-hide="isLoggedin">
+                    <a href="/login"><i class="fa fa-user"></i> Logowanie</a>
+            </li>
+            <li ng-show="isLoggedin">
+                    <a href="/logout"><i class="fa fa-user"></i> Wyloguj</a>
+            </li>
+        </ul>
+
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav side-nav">
                 <li>
-                    <a href="/current"><i class="fa fa-fw fa-dashboard"></i>Bieżące dane</a>
+                    <a href="/current"><i class="fa fa-fw fa-table"></i> Aktualne dane</a>
                 </li>
                 <li>
-                    <a href="/stats"><i class="fa fa-fw fa-dashboard"></i>Statystyki</a>
+                    <a href="/stats"><i class="fa fa-fw fa-table"></i> Statystyki</a>
                 </li>
                 <li>
-                    <a href="/history"><i class="fa fa-fw fa-dashboard"></i>Historia</a>
-                </li>
-                <li ng-hide="isLoggedin">
-                    <a href="/login"><i class="fa fa-fw fa-dashboard"></i>Logowanie</a>
+                    <a href="/history"><i class="fa fa-fw fa-table"></i> Historia</a>
                 </li>
                 <li ng-show="isLoggedin">
-                    <a href="/console"><i class="fa fa-fw fa-dashboard"></i>Konsola systemowa</a>
+                    <a href="/console"><i class="fa fa-fw fa-dashboard"></i> Konsola systemowa</a>
                 </li>
                 <li ng-show="isLoggedin">
-                    <a href="/monitor"><i class="fa fa-fw fa-dashboard"></i>Monitor zasobów</a>
-                </li>
-                <li ng-show="isLoggedin">
-                    <a href="/logout"><i class="fa fa-fw fa-dashboard"></i>Wyloguj</a>
+                    <a href="/monitor"><i class="fa fa-fw fa-dashboard"></i> Monitor zasobów</a>
                 </li>
                 <li>
-                    <a href="/about"><i class="fa fa-fw fa-dashboard"></i>O projekcie</a>
+                    <a href="/about"><i class="fa fa-fw fa-file"></i> O projekcie</a>
                 </li>
             </ul>
         </div>

@@ -99,7 +99,8 @@ class DatabaseOperations():
                                                                                          HistoricalValues.date).order_by(
             CurrentValues.id.desc()).first()
 
-        result_list.append({"temperature": current_stats[0], "humidity": current_stats[1], "pressure": current_stats[2] / 100,
+        result_list.append({"temperature":"%.2f" % current_stats[0], "humidity": "%.2f" %  (current_stats[1]*100),
+                            "pressure": "%.2f" %  (current_stats[2] / 100),
                             "date": current_stats[3]})
 
         return result_list

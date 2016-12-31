@@ -1,21 +1,43 @@
-<div>
-    <form name="commandForm">
-        <label>Komenda</label>
-        <input ng-model="script" name="script" type="text" id="inputScript" required="" autofocus=""/>
-        <button ng-click="cmd()" name="commandScript">Wykonaj</button>
-    </form>
-    <button ng-click="cmdHistory()" name="commandHistory">Historia komend</button>
-    <table class="table table-bordered table-hover table-striped">
-        <tr> Wynik polecenia</tr>
-        <tr ng-repeat="a in cmdBody">
-            <td>{{a.script}}</td>
-        </tr>
-    </table>
-    <table class="table table-bordered table-hover table-striped">
-        <tr> Historia komend</tr>
-        <tr ng-repeat="a in cmdHist">
-            <td>{{a.command}}</td>
-            <td>{{a.date}}</td>
-        </tr>
-    </table>
+<div class="row">
+    <div class="col-lg-12">
+        <h2>Konsola systemowa</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6">
+        <form name="commandForm">
+            <input ng-model="script" name="script" type="text" class="form-control" id="inputScript" required=""
+                   autofocus="" placeholder="Komenda"/>
+        </form>
+
+    </div>
+    <div class="col-lg-6">
+        <button ng-click="cmd()" class="btn btn-xs btn-primary" name="commandScript">Wykonaj</button>
+        <button ng-click="cmdHistory()" class="btn btn-xs btn-primary" name="commandHistory">Historia komend</button>
+    </div>
+</div>
+<br/>
+<div class="row">
+    <div class="col-lg-6">
+        <table class="table table-bordered table-hover table-striped">
+            <tr>
+                <th>Wynik polecenia</th>
+            </tr>
+            <tr ng-repeat="a in cmdBody">
+                <td>{{a.script}}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-lg-6">
+        <table class="table table-bordered table-hover table-striped">
+            <tr>
+                <th>Komenda</th>
+                <th>Data wykonania</th>
+            </tr>
+            <tr ng-repeat="a in cmdHist">
+                <td>{{a.command}}</td>
+                <td>{{a.date}}</td>
+            </tr>
+        </table>
+    </div>
 </div>

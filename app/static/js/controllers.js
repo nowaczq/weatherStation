@@ -44,11 +44,13 @@ function CurrentController($scope,$http,$timeout,$location)
 
             );
             $timeout(cur, 5000);
+
         }
     };
 
     if ($location.path() === '/current')
         cur();
+
 
 }
 
@@ -259,6 +261,7 @@ function HistoryController($scope, $http)
                 $scope.dateList = {};
                 console.log("true");
                 $scope.dateList = results.result;
+                 $("#bar-example").empty();
             }).error(function () {
                 console.log("false");
 
@@ -274,6 +277,20 @@ function HistoryController($scope, $http)
                 $scope.dateList = {};
                 console.log("true");
                 $scope.dateList = results.result;
+                var jsonData = results.result;
+                 $("#bar-example").empty();
+                var table = new Array(jsonData.length);
+                for (var i = 0; i < jsonData.length;i++)
+                {
+                    table[i] = {y : i, a : parseFloat(jsonData[i].temperature)};
+                }
+                console.log(table);
+                Morris.Line({
+                  element: 'bar-example',
+                  data: table,
+                  xkey: 'y',
+                  ykeys: 'a'
+                });
             }).error(function () {
                 console.log("false");
 
@@ -288,6 +305,20 @@ function HistoryController($scope, $http)
                 $scope.dateList = {};
                 console.log("true");
                 $scope.dateList = results.result;
+                var jsonData = results.result;
+                 $("#bar-example").empty();
+                var table = new Array(jsonData.length);
+                for (var i = 0; i < jsonData.length;i++)
+                {
+                    table[i] = {y : i, a : parseFloat(jsonData[i].humidity)};
+                }
+                console.log(table);
+                Morris.Line({
+                  element: 'bar-example',
+                  data: table,
+                  xkey: 'y',
+                  ykeys: 'a'
+                });
             }).error(function () {
                 console.log("false");
 
@@ -302,6 +333,20 @@ function HistoryController($scope, $http)
                 $scope.dateList = {};
                 console.log("true");
                 $scope.dateList = results.result;
+                var jsonData = results.result;
+                 $("#bar-example").empty();
+                var table = new Array(jsonData.length);
+                for (var i = 0; i < jsonData.length;i++)
+                {
+                    table[i] = {y : i, a : parseFloat(jsonData[i].pressure)};
+                }
+                console.log(table);
+                Morris.Line({
+                  element: 'bar-example',
+                  data: table,
+                  xkey: 'y',
+                  ykeys: 'a'
+                });
             }).error(function () {
                 console.log("false");
 
