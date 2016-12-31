@@ -328,7 +328,19 @@ function ConsoleController($scope,$http)
                 console.log("false");
         })
 
+    };
+    $scope.cmdHistory = function ()
+    {
+        $http.get('/commandHistory').success
+        (
+            function(results)
+            {
+                $scope.cmdHist = results.result;
+            }
+        )
+
     }
+
 
 }
 

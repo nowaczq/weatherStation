@@ -232,7 +232,13 @@ def get_all_stats():
 def get_script_result():
     data = request.json
     script = data['script']
+    DatabaseOperations().set_command(script)
     result_list = BashOperations().do_bash_script(script)
+    return jsonify(result=result_list)
+
+@app.route('/commandHistory',methods=['GET','POST'])
+def get_script_history():
+    result_list = DatabaseOperations().get_all_commands()
     return jsonify(result=result_list)
 
 @app.route('/monitor',methods=['GET','POST'])

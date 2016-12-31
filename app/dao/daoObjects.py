@@ -213,3 +213,26 @@ class StatisticValues(base):
 
     def __repr__(self):
         return '<Period start %r>' % self.periodStart
+
+class BashHistory(base):
+    __tablename__ = 'bash_history'
+    id = db.Column('id', db.INTEGER, primary_key=True)
+    command = db.Column('command',db.VARCHAR, nullable=False)
+    date = db.Column('date',db.TIMESTAMP,nullable=False)
+
+    def __init__(self,cmd,date):
+        self.command = cmd
+        self.date = date
+
+
+    def get_date(self):
+        return self.date
+
+    def get_command(self):
+        return self.command
+
+    def to_json(self):
+        return {'Bash history' : {'command' : self.command , 'date' : self.date}}
+
+    def __repr__(self):
+        return '<Date %r>' % self.date

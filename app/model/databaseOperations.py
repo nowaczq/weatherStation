@@ -166,3 +166,17 @@ class DatabaseOperations():
         insert_statistic_values = StatisticValues(start, stop, id_temperature_stats, id_humidity_stats, id_pressure_stats)
         db_session.add(insert_statistic_values)
         db_session.commit()
+
+    def set_command(self,command):
+        insert_command = BashHistory(command,datetime.now())
+        db_session.add(insert_command)
+        db_session.commit()
+
+    def get_all_commands(self):
+        command_history = BashHistory.query.with_entities(BashHistory.command,BashHistory.date)
+
+        result_list = []
+        for command,date in command_history:
+            result_list.append({'command' : command, 'date' : date})
+
+        return result_list

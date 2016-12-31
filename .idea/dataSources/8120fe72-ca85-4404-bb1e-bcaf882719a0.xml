@@ -9,8 +9,8 @@
     </database>
     <schema id="3" parent="2" name="public">
       <ObjectId>2200</ObjectId>
-      <IntrospectionTimestamp>2016-12-30.22:48:43.980</IntrospectionTimestamp>
-      <IntrospectionStateNumber>15178</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2016-12-30.23:55:11.158</IntrospectionTimestamp>
+      <IntrospectionStateNumber>15751</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -29,317 +29,354 @@
     <schema id="8" parent="2" name="information_schema">
       <ObjectId>11591</ObjectId>
     </schema>
-    <sequence id="9" parent="3" name="current_values_id_seq">
+    <sequence id="9" parent="3" name="bash_history_id_seq">
+      <ObjectId>24581</ObjectId>
+      <StateNumber>15751</StateNumber>
+      <SequenceIdentity>1</SequenceIdentity>
+    </sequence>
+    <sequence id="10" parent="3" name="current_values_id_seq">
       <ObjectId>16420</ObjectId>
       <StateNumber>698</StateNumber>
     </sequence>
-    <sequence id="10" parent="3" name="historical_values_id_seq">
+    <sequence id="11" parent="3" name="historical_values_id_seq">
       <ObjectId>16428</ObjectId>
       <StateNumber>699</StateNumber>
     </sequence>
-    <sequence id="11" parent="3" name="hum_stats_id_seq">
+    <sequence id="12" parent="3" name="hum_stats_id_seq">
       <ObjectId>16457</ObjectId>
       <StateNumber>704</StateNumber>
     </sequence>
-    <sequence id="12" parent="3" name="press_stats_id_seq">
+    <sequence id="13" parent="3" name="press_stats_id_seq">
       <ObjectId>16449</ObjectId>
       <StateNumber>703</StateNumber>
     </sequence>
-    <sequence id="13" parent="3" name="statistic_values_id_seq">
+    <sequence id="14" parent="3" name="statistic_values_id_seq">
       <ObjectId>16465</ObjectId>
       <StateNumber>705</StateNumber>
     </sequence>
-    <sequence id="14" parent="3" name="temp_stats_id_seq">
+    <sequence id="15" parent="3" name="temp_stats_id_seq">
       <ObjectId>16441</ObjectId>
       <StateNumber>702</StateNumber>
     </sequence>
-    <sequence id="15" parent="3" name="user_id_seq">
+    <sequence id="16" parent="3" name="user_id_seq">
       <ObjectId>16401</ObjectId>
       <StateNumber>693</StateNumber>
     </sequence>
-    <table id="16" parent="3" name="current_values">
+    <table id="17" parent="3" name="bash_history">
+      <ObjectId>24583</ObjectId>
+      <StateNumber>15751</StateNumber>
+    </table>
+    <table id="18" parent="3" name="current_values">
       <ObjectId>16422</ObjectId>
       <StateNumber>1200</StateNumber>
     </table>
-    <table id="17" parent="3" name="historical_values">
+    <table id="19" parent="3" name="historical_values">
       <ObjectId>16430</ObjectId>
       <StateNumber>1200</StateNumber>
     </table>
-    <table id="18" parent="3" name="hum_stats">
+    <table id="20" parent="3" name="hum_stats">
       <ObjectId>16459</ObjectId>
       <StateNumber>15176</StateNumber>
     </table>
-    <table id="19" parent="3" name="press_stats">
+    <table id="21" parent="3" name="press_stats">
       <ObjectId>16451</ObjectId>
       <StateNumber>15177</StateNumber>
     </table>
-    <table id="20" parent="3" name="statistic_values">
+    <table id="22" parent="3" name="statistic_values">
       <ObjectId>16467</ObjectId>
       <StateNumber>705</StateNumber>
     </table>
-    <table id="21" parent="3" name="temp_stats">
+    <table id="23" parent="3" name="temp_stats">
       <ObjectId>16443</ObjectId>
       <StateNumber>15178</StateNumber>
     </table>
-    <table id="22" parent="3" name="user_info">
+    <table id="24" parent="3" name="user_info">
       <ObjectId>16403</ObjectId>
       <StateNumber>2801</StateNumber>
     </table>
-    <column id="23" parent="16" name="id">
+    <column id="25" parent="17" name="id">
+      <Position>1</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>15751</StateNumber>
+      <DefaultExpression>nextval(&apos;bash_history_id_seq&apos;::regclass)</DefaultExpression>
+    </column>
+    <column id="26" parent="17" name="command">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+      <StateNumber>15751</StateNumber>
+    </column>
+    <column id="27" parent="17" name="date">
+      <Position>3</Position>
+      <DataType>timestamp|0</DataType>
+      <StateNumber>15751</StateNumber>
+    </column>
+    <index id="28" parent="17" name="bash_history_pkey">
+      <ObjectId>24587</ObjectId>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="29" parent="17" name="bash_history_pkey">
+      <ObjectId>24588</ObjectId>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>bash_history_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="30" parent="18" name="id">
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>698</StateNumber>
       <DefaultExpression>nextval(&apos;current_values_id_seq&apos;::regclass)</DefaultExpression>
     </column>
-    <column id="24" parent="16" name="temperature">
+    <column id="31" parent="18" name="temperature">
       <DataType>double precision|0</DataType>
       <StateNumber>698</StateNumber>
     </column>
-    <column id="25" parent="16" name="humidity">
+    <column id="32" parent="18" name="humidity">
       <DataType>double precision|0</DataType>
       <StateNumber>698</StateNumber>
     </column>
-    <column id="26" parent="16" name="pressure">
+    <column id="33" parent="18" name="pressure">
       <DataType>double precision|0</DataType>
       <StateNumber>698</StateNumber>
     </column>
-    <index id="27" parent="16" name="current_values_pkey">
+    <index id="34" parent="18" name="current_values_pkey">
       <ObjectId>16426</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="28" parent="16" name="current_values_pkey">
+    <key id="35" parent="18" name="current_values_pkey">
       <ObjectId>16427</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>current_values_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="29" parent="17" name="id">
+    <column id="36" parent="19" name="id">
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>699</StateNumber>
       <DefaultExpression>nextval(&apos;historical_values_id_seq&apos;::regclass)</DefaultExpression>
     </column>
-    <column id="30" parent="17" name="date">
+    <column id="37" parent="19" name="date">
       <DataType>timestamp|0</DataType>
       <StateNumber>699</StateNumber>
     </column>
-    <column id="31" parent="17" name="id_current_val">
+    <column id="38" parent="19" name="id_current_val">
       <DataType>integer|0</DataType>
       <StateNumber>700</StateNumber>
     </column>
-    <index id="32" parent="17" name="historical_values_pkey">
+    <index id="39" parent="19" name="historical_values_pkey">
       <ObjectId>16434</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="33" parent="17" name="historical_values_pkey">
+    <key id="40" parent="19" name="historical_values_pkey">
       <ObjectId>16435</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>historical_values_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="34" parent="17" name="current_values___fk">
+    <foreign-key id="41" parent="19" name="current_values___fk">
       <ObjectId>16436</ObjectId>
       <ColNames>id_current_val</ColNames>
       <RefTableName>current_values</RefTableName>
       <RefKeyName>current_values_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="35" parent="18" name="id">
+    <column id="42" parent="20" name="id">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>704</StateNumber>
       <DefaultExpression>nextval(&apos;hum_stats_id_seq&apos;::regclass)</DefaultExpression>
     </column>
-    <column id="36" parent="18" name="min_hum">
+    <column id="43" parent="20" name="min_hum">
       <Position>2</Position>
       <DataType>double precision|0</DataType>
       <StateNumber>704</StateNumber>
     </column>
-    <column id="37" parent="18" name="max_hum">
+    <column id="44" parent="20" name="max_hum">
       <Position>3</Position>
       <DataType>double precision|0</DataType>
       <StateNumber>704</StateNumber>
     </column>
-    <column id="38" parent="18" name="avg_hum">
+    <column id="45" parent="20" name="avg_hum">
       <Position>4</Position>
       <DataType>double precision|0</DataType>
       <StateNumber>704</StateNumber>
     </column>
-    <column id="39" parent="18" name="med_hum">
+    <column id="46" parent="20" name="med_hum">
       <Position>5</Position>
       <DataType>double precision|0</DataType>
       <StateNumber>15176</StateNumber>
     </column>
-    <index id="40" parent="18" name="hum_stats_pkey">
+    <index id="47" parent="20" name="hum_stats_pkey">
       <ObjectId>16463</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="41" parent="18" name="hum_stats_pkey">
+    <key id="48" parent="20" name="hum_stats_pkey">
       <ObjectId>16464</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>hum_stats_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="42" parent="19" name="id">
+    <column id="49" parent="21" name="id">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>703</StateNumber>
       <DefaultExpression>nextval(&apos;press_stats_id_seq&apos;::regclass)</DefaultExpression>
     </column>
-    <column id="43" parent="19" name="min_press">
+    <column id="50" parent="21" name="min_press">
       <Position>2</Position>
       <DataType>double precision|0</DataType>
       <StateNumber>703</StateNumber>
     </column>
-    <column id="44" parent="19" name="max_press">
+    <column id="51" parent="21" name="max_press">
       <Position>3</Position>
       <DataType>double precision|0</DataType>
       <StateNumber>703</StateNumber>
     </column>
-    <column id="45" parent="19" name="avg_press">
+    <column id="52" parent="21" name="avg_press">
       <Position>4</Position>
       <DataType>double precision|0</DataType>
       <StateNumber>703</StateNumber>
     </column>
-    <column id="46" parent="19" name="med_press">
+    <column id="53" parent="21" name="med_press">
       <Position>5</Position>
       <DataType>double precision|0</DataType>
       <StateNumber>15177</StateNumber>
     </column>
-    <index id="47" parent="19" name="press_stats_pkey">
+    <index id="54" parent="21" name="press_stats_pkey">
       <ObjectId>16455</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="48" parent="19" name="press_stats_pkey">
+    <key id="55" parent="21" name="press_stats_pkey">
       <ObjectId>16456</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>press_stats_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="49" parent="20" name="id">
+    <column id="56" parent="22" name="id">
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>705</StateNumber>
       <DefaultExpression>nextval(&apos;statistic_values_id_seq&apos;::regclass)</DefaultExpression>
     </column>
-    <column id="50" parent="20" name="period_start">
+    <column id="57" parent="22" name="period_start">
       <DataType>timestamp|0</DataType>
       <StateNumber>705</StateNumber>
     </column>
-    <column id="51" parent="20" name="period_stop">
+    <column id="58" parent="22" name="period_stop">
       <DataType>timestamp|0</DataType>
       <StateNumber>705</StateNumber>
     </column>
-    <column id="52" parent="20" name="id_temp_stats">
+    <column id="59" parent="22" name="id_temp_stats">
       <DataType>integer|0</DataType>
       <StateNumber>705</StateNumber>
     </column>
-    <column id="53" parent="20" name="id_hum_stats">
+    <column id="60" parent="22" name="id_hum_stats">
       <DataType>integer|0</DataType>
       <StateNumber>705</StateNumber>
     </column>
-    <column id="54" parent="20" name="id_press_stats">
+    <column id="61" parent="22" name="id_press_stats">
       <DataType>integer|0</DataType>
       <StateNumber>705</StateNumber>
     </column>
-    <index id="55" parent="20" name="statistic_values_pkey">
+    <index id="62" parent="22" name="statistic_values_pkey">
       <ObjectId>16471</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="56" parent="20" name="statistic_values_pkey">
+    <key id="63" parent="22" name="statistic_values_pkey">
       <ObjectId>16472</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>statistic_values_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="57" parent="20" name="statistic_values_temp_stats_id_fk">
+    <foreign-key id="64" parent="22" name="statistic_values_temp_stats_id_fk">
       <ObjectId>16473</ObjectId>
       <ColNames>id_temp_stats</ColNames>
       <RefTableName>temp_stats</RefTableName>
       <RefKeyName>temp_stats_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="58" parent="20" name="statistic_values_hum_stats_id_fk">
+    <foreign-key id="65" parent="22" name="statistic_values_hum_stats_id_fk">
       <ObjectId>16478</ObjectId>
       <ColNames>id_hum_stats</ColNames>
       <RefTableName>hum_stats</RefTableName>
       <RefKeyName>hum_stats_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="59" parent="20" name="statistic_values_press_stats_id_fk">
+    <foreign-key id="66" parent="22" name="statistic_values_press_stats_id_fk">
       <ObjectId>16483</ObjectId>
       <ColNames>id_press_stats</ColNames>
       <RefTableName>press_stats</RefTableName>
       <RefKeyName>press_stats_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="60" parent="21" name="id">
+    <column id="67" parent="23" name="id">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>702</StateNumber>
       <DefaultExpression>nextval(&apos;temp_stats_id_seq&apos;::regclass)</DefaultExpression>
     </column>
-    <column id="61" parent="21" name="min_temp">
+    <column id="68" parent="23" name="min_temp">
       <Position>2</Position>
       <DataType>double precision|0</DataType>
       <StateNumber>702</StateNumber>
     </column>
-    <column id="62" parent="21" name="max_temp">
+    <column id="69" parent="23" name="max_temp">
       <Position>3</Position>
       <DataType>double precision|0</DataType>
       <StateNumber>702</StateNumber>
     </column>
-    <column id="63" parent="21" name="avg_temp">
+    <column id="70" parent="23" name="avg_temp">
       <Position>4</Position>
       <DataType>double precision|0</DataType>
       <StateNumber>702</StateNumber>
     </column>
-    <column id="64" parent="21" name="med_temp">
+    <column id="71" parent="23" name="med_temp">
       <Position>5</Position>
       <DataType>double precision|0</DataType>
       <StateNumber>15178</StateNumber>
     </column>
-    <index id="65" parent="21" name="temp_stats_pkey">
+    <index id="72" parent="23" name="temp_stats_pkey">
       <ObjectId>16447</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="66" parent="21" name="temp_stats_pkey">
+    <key id="73" parent="23" name="temp_stats_pkey">
       <ObjectId>16448</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>temp_stats_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="67" parent="22" name="id">
+    <column id="74" parent="24" name="id">
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>693</StateNumber>
       <DefaultExpression>nextval(&apos;user_id_seq&apos;::regclass)</DefaultExpression>
     </column>
-    <column id="68" parent="22" name="login">
+    <column id="75" parent="24" name="login">
       <DataType>varchar(50)|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>693</StateNumber>
     </column>
-    <column id="69" parent="22" name="password">
+    <column id="76" parent="24" name="password">
       <DataType>varchar(50)|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>693</StateNumber>
     </column>
-    <index id="70" parent="22" name="user_pkey">
+    <index id="77" parent="24" name="user_pkey">
       <ObjectId>16407</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="71" parent="22" name="user_pkey">
+    <key id="78" parent="24" name="user_pkey">
       <ObjectId>16408</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>user_pkey</UnderlyingIndexName>
