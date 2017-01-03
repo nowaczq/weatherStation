@@ -28,8 +28,34 @@ function IndexController(AuthenticationService, $timeout,$rootScope)
 
 }
 
+function LineGraph(table,elementID,labelText,colour)
+{
+    $("#"+elementID).empty();
+    console.log('no elo' + elementID);
+    Morris.Line
+    ({
+                  element: elementID,
+                  data: table,
+                  xkey: 'date',
+                  ykeys: 'a',
+                  xLabels: 'czas',
+                  labels: labelText,
+                  parseTime:false,
+                  hideHover : 'auto',
+                  pointFillColors:['#ffffff'],
+                  pointStrokeColors: ['black'],
+                  lineColors: [colour]
+    });
+}
+
+
 function CurrentController($scope,$http,$timeout,$location)
 {
+    var curTemp = [];
+    var curHum = [];
+    var curPress = [];
+    var i = 0;
+
     var cur = function ()
     {
         if ($location.path() === '/current')
@@ -39,7 +65,14 @@ function CurrentController($scope,$http,$timeout,$location)
                 function(results)
                 {
                     $scope.currentValues = results.result;
-                    console.log($scope.currentValues[0]);
+                    curTemp[i] = {date : $scope.currentValues[0].date, a : $scope.currentValues[0].temperature};
+                    curHum[i] = {date : $scope.currentValues[0].date, a : $scope.currentValues[0].humidity};
+                    curPress[i] = {date : $scope.currentValues[0].date, a : $scope.currentValues[0].pressure};
+                    console.log(new Date());
+                    i += 1;
+                    LineGraph(curTemp,'temperature-graph','Temperatura','#337ab7');
+                    LineGraph(curHum,'humidity-graph','Wilgotność','#5cb85c');
+                    LineGraph(curPress,'pressure-graph','Ciśnienie','#f0ad4e');
                 }
 
             );
@@ -278,19 +311,13 @@ function HistoryController($scope, $http)
                 console.log("true");
                 $scope.dateList = results.result;
                 var jsonData = results.result;
-                 $("#bar-example").empty();
                 var table = new Array(jsonData.length);
                 for (var i = 0; i < jsonData.length;i++)
                 {
-                    table[i] = {y : i, a : parseFloat(jsonData[i].temperature)};
+                    table[i] = {date : jsonData[i].date, a : parseFloat(jsonData[i].temperature)};
                 }
-                console.log(table);
-                Morris.Line({
-                  element: 'bar-example',
-                  data: table,
-                  xkey: 'y',
-                  ykeys: 'a'
-                });
+                LineGraph(table,'bar-example','Temperatura','#337ab7');
+
             }).error(function () {
                 console.log("false");
 
@@ -306,19 +333,12 @@ function HistoryController($scope, $http)
                 console.log("true");
                 $scope.dateList = results.result;
                 var jsonData = results.result;
-                 $("#bar-example").empty();
                 var table = new Array(jsonData.length);
                 for (var i = 0; i < jsonData.length;i++)
                 {
-                    table[i] = {y : i, a : parseFloat(jsonData[i].humidity)};
+                    table[i] = {date : jsonData[i].date, a : parseFloat(jsonData[i].humidity)};
                 }
-                console.log(table);
-                Morris.Line({
-                  element: 'bar-example',
-                  data: table,
-                  xkey: 'y',
-                  ykeys: 'a'
-                });
+                LineGraph(table,'bar-example','Wilgotność','#5cb85c');
             }).error(function () {
                 console.log("false");
 
@@ -334,19 +354,12 @@ function HistoryController($scope, $http)
                 console.log("true");
                 $scope.dateList = results.result;
                 var jsonData = results.result;
-                 $("#bar-example").empty();
                 var table = new Array(jsonData.length);
                 for (var i = 0; i < jsonData.length;i++)
                 {
-                    table[i] = {y : i, a : parseFloat(jsonData[i].pressure)};
+                    table[i] = {date : jsonData[i].date, a : parseFloat(jsonData[i].pressure)};
                 }
-                console.log(table);
-                Morris.Line({
-                  element: 'bar-example',
-                  data: table,
-                  xkey: 'y',
-                  ykeys: 'a'
-                });
+                LineGraph(table,'bar-example','Ciśnienie','#f0ad4e');
             }).error(function () {
                 console.log("false");
 
@@ -394,8 +407,6 @@ function AboutController($scope)
 
 }
 
-
-
 function LoginController($scope, AuthenticationService, $location)
 {
 
@@ -430,9 +441,6 @@ function LoginController($scope, AuthenticationService, $location)
 
 
 }
-
-
-
 
 function LogoutController($scope, AuthenticationService, $location, $rootScope)
 {
